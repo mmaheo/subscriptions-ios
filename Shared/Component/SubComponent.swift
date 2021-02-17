@@ -11,27 +11,32 @@ struct SubComponent: View {
     
     // MARK: - Properties
     
-    let name: String
-    let price: Double
-    let recurrence: String
+    let sub: Sub
     
     // MARK: - Body
     
     var body: some View {
+        
         HStack {
             VStack(alignment: .leading) {
-                Text("\(price, specifier: "%.2f")")
+                Text(sub.name)
                     .font(.headline)
                 
-                Text(name)
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .padding(.top, 4)
-                
-                Text(recurrence)
-                    .font(.subheadline)
+                Text(sub.recurrence.localized)
+                    .font(.caption)
             }
+            
             Spacer()
+            
+            VStack(alignment: .trailing) {
+                Text("\(sub.price, specifier: "%.2f")")
+                    .font(.headline)
+                
+                sub.daysLeft.map {
+                    Text("\($0) \($0 > 1 ? "days" : "day") left")
+                        .font(.caption)
+                }
+            }
         }
         .foregroundColor(.white)
         .padding()
@@ -44,7 +49,7 @@ struct SubComponent: View {
 
 struct SubComponent_Previews: PreviewProvider {
     static var previews: some View {
-        SubComponent(name: "iCloud", price: 9.99, recurrence: Sub.Recurrence.monthly.localized)
+        SubComponent(sub: Sub.one)
             .previewLayout(.sizeThatFits)
     }
 }

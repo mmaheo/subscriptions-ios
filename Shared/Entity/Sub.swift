@@ -32,6 +32,24 @@ struct Sub: Identifiable {
     let recurrence: Recurrence
     let dueEvery: Date
     
+    var daysLeft: Int? {
+        let calendar = Calendar.current
+        
+        let today = calendar.startOfDay(for: Date())
+        let dueDate = calendar.startOfDay(for: dueEvery)
+
+        let daysLeft = calendar.dateComponents([.day], from: today, to: dueDate).day
+        
+        if let daysLeft = daysLeft,
+           daysLeft < 0,
+           let nextDueDate = Calendar.current.date(byAdding: .month, value: 1, to: dueDate) {
+
+            return calendar.dateComponents([.day], from: today, to: nextDueDate).day
+        }
+        
+        return daysLeft
+    }
+    
     // MARK: - Lifecycle
     
     init(name: String, price: Double, recurrence: Recurrence, dueEvery: Date) {
@@ -58,6 +76,8 @@ struct Sub: Identifiable {
 #if DEBUG
 
 extension Sub {
+    static let one = list[0]
+    
     static let list = [
         Sub(name: "iCloud", price: 0.99, recurrence: .monthly, dueEvery: Date()),
         Sub(name: "Apple Music", price: 9.99, recurrence: .monthly, dueEvery: Date())

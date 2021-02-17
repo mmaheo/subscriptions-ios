@@ -82,7 +82,7 @@ struct AddSubView: View {
                     Text($0.localized)
                 }
             }
-            DatePicker("Due every", selection: $dueEvery, in: Date()..., displayedComponents: .date)
+            DatePicker("Next billing", selection: $dueEvery, in: Date()..., displayedComponents: .date)
         }
     }
 }
