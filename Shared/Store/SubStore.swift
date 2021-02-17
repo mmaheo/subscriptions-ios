@@ -12,7 +12,7 @@ import OSLog
 
 enum SubStoreAction {
     case fetchSubs
-    case addSub(name: String, price: String)
+    case addSub(name: String, price: String, recurrence: Sub.Recurrence)
 }
 
 final class SubStore: ObservableObject {
@@ -38,8 +38,8 @@ final class SubStore: ObservableObject {
         switch action {
         case .fetchSubs:
             fetchSubsAction()
-        case let .addSub(name, price):
-            addSubAction(name: name, price: price)
+        case let .addSub(name, price, recurrence):
+            addSubAction(name: name, price: price, recurrence: recurrence)
         }
     }
     
@@ -62,10 +62,10 @@ final class SubStore: ObservableObject {
             .disposed(by: disposeBag)
     }
     
-    private func addSubAction(name: String, price: String) {
+    private func addSubAction(name: String, price: String, recurrence: Sub.Recurrence) {
         guard let priceInDouble = Double(price) else { return }
         
-        let subToAdd = Sub(name: name, price: priceInDouble)
+        let subToAdd = Sub(name: name, price: priceInDouble, recurrence: recurrence)
         
         subWorker
             .create(sub: subToAdd)

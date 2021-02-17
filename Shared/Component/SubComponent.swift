@@ -13,16 +13,22 @@ struct SubComponent: View {
     
     let name: String
     let price: Double
+    let recurrence: String
     
     // MARK: - Body
     
     var body: some View {
         HStack {
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading) {
                 Text("\(price, specifier: "%.2f")")
                     .font(.headline)
                 
                 Text(name)
+                    .font(.title2)
+                    .bold()
+                    .padding(.top, 4)
+                
+                Text(recurrence)
                     .font(.subheadline)
             }
             Spacer()
@@ -38,7 +44,7 @@ struct SubComponent: View {
 
 struct SubComponent_Previews: PreviewProvider {
     static var previews: some View {
-        SubComponent(name: "iCloud", price: 9.99)
+        SubComponent(name: "iCloud", price: 9.99, recurrence: Sub.Recurrence.monthly.localized)
             .previewLayout(.sizeThatFits)
     }
 }

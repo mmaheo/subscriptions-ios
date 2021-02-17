@@ -27,7 +27,7 @@ struct SubView: View {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 16) {
                     ForEach(subStore.subs) { sub in
-                        SubComponent(name: sub.name, price: sub.price)
+                        SubComponent(name: sub.name, price: sub.price, recurrence: sub.recurrence.localized)
                     }
                 }
                 .padding(.horizontal)

@@ -31,7 +31,7 @@ final class SubWorker: Injectable {
     func fetchSubs() -> Single<[Sub]> {
         realmService
             .read(ofType: SubRealm.self, sortedByKeyPath: "createdAt", ascending: false)
-            .map{ Array($0).map { Sub(subRealm: $0) } }
+            .map{ Array($0).compactMap { Sub(subRealm: $0) } }
     }
     
 }
