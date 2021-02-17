@@ -38,6 +38,7 @@ struct SubComponent: View {
                 }
             }
         }
+        .frame(minHeight: 80)
         .foregroundColor(.white)
         .padding()
         .background(Color.red)

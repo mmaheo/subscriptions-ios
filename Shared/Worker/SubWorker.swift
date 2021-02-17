@@ -33,7 +33,7 @@ final class SubWorker: Injectable {
             .read(ofType: SubRealm.self)
             .map{ Array($0)
                 .compactMap { Sub(subRealm: $0) }
-                .sorted { $0.daysLeft ?? 0 < $1.daysLeft ?? 0 }
+                .sorted { $0.wrappedDaysLeft < $1.wrappedDaysLeft }
             }
     }
     
