@@ -11,6 +11,8 @@ struct SubView: View {
     
     // MARK: - Properties
     
+    @State private var isShowingAddSubView = false
+    
     @EnvironmentObject private var subStore: SubStore
     
     // MARK: - Body
@@ -35,10 +37,13 @@ struct SubView: View {
             .navigationTitle("Subscriptions")
             .toolbar {
                 Button(action: {
-                    subStore.dispatch(action: .addSub)
+                    isShowingAddSubView.toggle()
                 }, label: {
                     Image(systemName: "plus")
                 })
+            }
+            .sheet(isPresented: $isShowingAddSubView) {
+                AddSubView(isPresented: $isShowingAddSubView)
             }
         }
     }

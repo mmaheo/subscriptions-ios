@@ -9,12 +9,7 @@ import RealmSwift
 import RxSwift
 import OSLog
 
-protocol RealmServiceContract {
-    func create<Element: Object>(element: Element) -> Completable
-    func read<Element: Object>(ofType type: Element.Type) -> Single<Results<Element>>
-}
-
-final class RealmService: RealmServiceContract {
+final class RealmService {
     
     // MARK: - Properties
     
@@ -52,13 +47,19 @@ final class RealmService: RealmServiceContract {
         }
     }
     
-    func read<Element: Object>(ofType type: Element.Type) -> Single<Results<Element>> {
+    func read<Element: Object>(ofType type: Element.Type, sortedByKeyPath keyPath: String? = nil, ascending: Bool = true) -> Single<Results<Element>> {
         Single.create { [weak self] (single) in
             guard let self = self,
                 let realm = try? Realm(configuration: self.realmConfig)
             else { return Disposables.create() }
             
-            single(.success(realm.objects(type)))
+            let objects = realm.objects(type)
+            
+            if let keyPath = keyPath {
+                single(.success(objects.sorted(byKeyPath: keyPath, ascending: ascending)))
+            } else {
+                single(.success(objects))
+            }
             
             return Disposables.create()
         }

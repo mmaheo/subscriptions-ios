@@ -12,7 +12,7 @@ import OSLog
 
 enum SubStoreAction {
     case fetchSubs
-    case addSub
+    case addSub(name: String, price: String)
 }
 
 final class SubStore: ObservableObject {
@@ -38,8 +38,8 @@ final class SubStore: ObservableObject {
         switch action {
         case .fetchSubs:
             fetchSubsAction()
-        case .addSub:
-            addSubAction()
+        case let .addSub(name, price):
+            addSubAction(name: name, price: price)
         }
     }
     
@@ -62,8 +62,10 @@ final class SubStore: ObservableObject {
             .disposed(by: disposeBag)
     }
     
-    private func addSubAction() {
-        let subToAdd = Sub(name: "toto", price: 1000)
+    private func addSubAction(name: String, price: String) {
+        guard let priceInDouble = Double(price) else { return }
+        
+        let subToAdd = Sub(name: name, price: priceInDouble)
         
         subWorker
             .create(sub: subToAdd)
@@ -72,7 +74,7 @@ final class SubStore: ObservableObject {
             .subscribe(onCompleted: { [weak self] in
                 guard let self = self else { return }
                 
-                self.subs.append(subToAdd)
+                self.subs.insert(subToAdd, at: 0)
             }, onError: { [weak self] error in
                 guard let self = self else { return }
                 

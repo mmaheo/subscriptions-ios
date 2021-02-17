@@ -12,11 +12,11 @@ final class SubWorker: Injectable {
     
     // MARK: - Properties
     
-    private let realmService: RealmServiceContract
+    private let realmService: RealmService
     
     // MARK: - Lifecycle
     
-    init(realmService: RealmServiceContract) {
+    init(realmService: RealmService) {
         self.realmService = realmService
     }
     
@@ -30,7 +30,7 @@ final class SubWorker: Injectable {
     
     func fetchSubs() -> Single<[Sub]> {
         realmService
-            .read(ofType: SubRealm.self)
+            .read(ofType: SubRealm.self, sortedByKeyPath: "createdAt", ascending: false)
             .map{ Array($0).map { Sub(subRealm: $0) } }
     }
     

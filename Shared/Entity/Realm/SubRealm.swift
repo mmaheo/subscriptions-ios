@@ -15,6 +15,7 @@ final class SubRealm: Object {
     @objc dynamic var id = ""
     @objc dynamic var name = ""
     @objc dynamic var price: Double = 0
+    @objc dynamic var createdAt = Date()
     
     // MARK: - Lifecycle
     
