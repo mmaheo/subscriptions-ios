@@ -16,6 +16,7 @@ struct AddSubView: View {
     @State private var name = ""
     @State private var price: String = ""
     @State private var recurrence = Sub.Recurrence.monthly
+    @State private var dueEvery = Date()
     
     @EnvironmentObject private var subStore: SubStore
     
@@ -61,7 +62,7 @@ struct AddSubView: View {
     // MARK: - Actions
     
     private func addNewSubscriptionAction() {
-        subStore.dispatch(action: .addSub(name: name, price: price, recurrence: recurrence))
+        subStore.dispatch(action: .addSub(name: name, price: price, recurrence: recurrence, dueEvery: dueEvery))
         cancelAction()
     }
     
@@ -81,6 +82,7 @@ struct AddSubView: View {
                     Text($0.localized)
                 }
             }
+            DatePicker("Due every", selection: $dueEvery, in: Date()..., displayedComponents: .date)
         }
     }
 }

@@ -25,7 +25,7 @@ struct SubComponent: View {
                 
                 Text(name)
                     .font(.title2)
-                    .bold()
+                    .fontWeight(.semibold)
                     .padding(.top, 4)
                 
                 Text(recurrence)

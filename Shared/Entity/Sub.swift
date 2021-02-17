@@ -30,14 +30,16 @@ struct Sub: Identifiable {
     let name: String
     let price: Double
     let recurrence: Recurrence
+    let dueEvery: Date
     
     // MARK: - Lifecycle
     
-    init(name: String, price: Double, recurrence: Recurrence) {
+    init(name: String, price: Double, recurrence: Recurrence, dueEvery: Date) {
         self.id = UUID().uuidString
         self.name = name
         self.price = price
         self.recurrence = recurrence
+        self.dueEvery = dueEvery
     }
     
     init?(subRealm: SubRealm) {
@@ -47,6 +49,8 @@ struct Sub: Identifiable {
         
         guard let recurrence = Recurrence(rawValue: subRealm.recurrence) else { return nil }
         self.recurrence = recurrence
+        
+        self.dueEvery = subRealm.dueEvery
     }
     
 }
@@ -55,8 +59,8 @@ struct Sub: Identifiable {
 
 extension Sub {
     static let list = [
-        Sub(name: "iCloud", price: 0.99, recurrence: .monthly),
-        Sub(name: "Apple Music", price: 9.99, recurrence: .monthly)
+        Sub(name: "iCloud", price: 0.99, recurrence: .monthly, dueEvery: Date()),
+        Sub(name: "Apple Music", price: 9.99, recurrence: .monthly, dueEvery: Date())
     ]
 }
 
