@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct SubscriptionsApp: App {
+    
+    // MARK: - Properties
+    
+    private let subStore = SubStore()
+    
+    // MARK: - Body
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SubView()
+                .environmentObject(subStore)
         }
     }
 }
