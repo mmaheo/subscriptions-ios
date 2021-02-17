@@ -15,16 +15,23 @@ struct SubView: View {
     
     @EnvironmentObject private var subStore: SubStore
     
+    private let columns = [
+        GridItem(.flexible(), spacing: 16),
+        GridItem(.flexible())
+    ]
+    
     // MARK: - Body
     
     var body: some View {
         NavigationView {
-            List(subStore.subs) { sub in
-                HStack {
-                    Text(sub.name)
-                    Spacer()
-                    Text("\(sub.price) $")
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 16) {
+                    ForEach(subStore.subs) { sub in
+                        SubComponent(name: sub.name, price: sub.price)
+                    }
                 }
+                .padding(.horizontal)
+                .padding(.top)
             }
             .onAppear {
                 subStore.dispatch(action: .fetchSubs)

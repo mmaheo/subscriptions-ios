@@ -35,6 +35,8 @@
 		520DC87025DD785E0033C7E5 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 520DC86F25DD785E0033C7E5 /* RxCocoa */; };
 		520DC87225DD785E0033C7E5 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 520DC87125DD785E0033C7E5 /* RxSwift */; };
 		520DC87525DD78E90033C7E5 /* Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DC81325DD51620033C7E5 /* Sub.swift */; };
+		52493D1E25DD87E90042C685 /* SubComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52493D1D25DD87E90042C685 /* SubComponent.swift */; };
+		52493D1F25DD87E90042C685 /* SubComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52493D1D25DD87E90042C685 /* SubComponent.swift */; };
 		524D411725DD11DB00829193 /* SubscriptionsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524D410425DD11DA00829193 /* SubscriptionsApp.swift */; };
 		524D411825DD11DB00829193 /* SubscriptionsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524D410425DD11DA00829193 /* SubscriptionsApp.swift */; };
 		524D411925DD11DB00829193 /* SubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524D410525DD11DA00829193 /* SubView.swift */; };
@@ -53,6 +55,7 @@
 		520DC85825DD64710033C7E5 /* Logger+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+App.swift"; sourceTree = "<group>"; };
 		520DC85E25DD703A0033C7E5 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		520DC86325DD783E0033C7E5 /* AddSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSubView.swift; sourceTree = "<group>"; };
+		52493D1D25DD87E90042C685 /* SubComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubComponent.swift; sourceTree = "<group>"; };
 		524D410425DD11DA00829193 /* SubscriptionsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsApp.swift; sourceTree = "<group>"; };
 		524D410525DD11DA00829193 /* SubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubView.swift; sourceTree = "<group>"; };
 		524D410625DD11DB00829193 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -155,6 +158,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		52493D1C25DD87D70042C685 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				52493D1D25DD87E90042C685 /* SubComponent.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		524D40FE25DD11DA00829193 = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +187,7 @@
 				520DC82B25DD53BD0033C7E5 /* Worker */,
 				520DC81225DD51570033C7E5 /* Entity */,
 				520DC80625DD50920033C7E5 /* Store */,
+				52493D1C25DD87D70042C685 /* Component */,
 				52B6F95C25DD4720000FDB75 /* View */,
 				52B6F95B25DD4716000FDB75 /* Resource */,
 			);
@@ -360,6 +372,7 @@
 				520DC85925DD64710033C7E5 /* Logger+App.swift in Sources */,
 				524D411725DD11DB00829193 /* SubscriptionsApp.swift in Sources */,
 				520DC81425DD51620033C7E5 /* Sub.swift in Sources */,
+				52493D1E25DD87E90042C685 /* SubComponent.swift in Sources */,
 				520DC80825DD50A00033C7E5 /* SubStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,6 +391,7 @@
 				520DC82825DD53A40033C7E5 /* AppDependency.swift in Sources */,
 				520DC84625DD59CC0033C7E5 /* SubWorker.swift in Sources */,
 				520DC80925DD50A00033C7E5 /* SubStore.swift in Sources */,
+				52493D1F25DD87E90042C685 /* SubComponent.swift in Sources */,
 				520DC85A25DD64710033C7E5 /* Logger+App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
