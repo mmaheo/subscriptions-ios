@@ -3,13 +3,30 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		520DC80825DD50A00033C7E5 /* SubStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DC80725DD50A00033C7E5 /* SubStore.swift */; };
 		520DC80925DD50A00033C7E5 /* SubStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DC80725DD50A00033C7E5 /* SubStore.swift */; };
 		520DC81425DD51620033C7E5 /* Sub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DC81325DD51620033C7E5 /* Sub.swift */; };
+		520DC81B25DD52F50033C7E5 /* Injectable in Frameworks */ = {isa = PBXBuildFile; productRef = 520DC81A25DD52F50033C7E5 /* Injectable */; };
+		520DC82025DD53790033C7E5 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 520DC81F25DD53790033C7E5 /* Realm */; };
+		520DC82225DD53790033C7E5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 520DC82125DD53790033C7E5 /* RealmSwift */; };
+		520DC82725DD53A40033C7E5 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DC82625DD53A40033C7E5 /* AppDependency.swift */; };
+		520DC82825DD53A40033C7E5 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DC82625DD53A40033C7E5 /* AppDependency.swift */; };
+		520DC83025DD542A0033C7E5 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 520DC82F25DD542A0033C7E5 /* RxCocoa */; };
+		520DC83225DD542A0033C7E5 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 520DC83125DD542A0033C7E5 /* RxSwift */; };
+		520DC83E25DD57790033C7E5 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DC83D25DD57790033C7E5 /* RealmService.swift */; };
+		520DC83F25DD57790033C7E5 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DC83D25DD57790033C7E5 /* RealmService.swift */; };
+		520DC84525DD59CC0033C7E5 /* SubWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DC84425DD59CC0033C7E5 /* SubWorker.swift */; };
+		520DC84625DD59CC0033C7E5 /* SubWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DC84425DD59CC0033C7E5 /* SubWorker.swift */; };
+		520DC84E25DD60540033C7E5 /* SubRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DC84D25DD60540033C7E5 /* SubRealm.swift */; };
+		520DC84F25DD60540033C7E5 /* SubRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DC84D25DD60540033C7E5 /* SubRealm.swift */; };
+		520DC85925DD64710033C7E5 /* Logger+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DC85825DD64710033C7E5 /* Logger+App.swift */; };
+		520DC85A25DD64710033C7E5 /* Logger+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DC85825DD64710033C7E5 /* Logger+App.swift */; };
+		520DC85F25DD703A0033C7E5 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DC85E25DD703A0033C7E5 /* AppError.swift */; };
+		520DC86025DD703A0033C7E5 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520DC85E25DD703A0033C7E5 /* AppError.swift */; };
 		524D411725DD11DB00829193 /* SubscriptionsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524D410425DD11DA00829193 /* SubscriptionsApp.swift */; };
 		524D411825DD11DB00829193 /* SubscriptionsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524D410425DD11DA00829193 /* SubscriptionsApp.swift */; };
 		524D411925DD11DB00829193 /* SubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524D410525DD11DA00829193 /* SubView.swift */; };
@@ -21,6 +38,12 @@
 /* Begin PBXFileReference section */
 		520DC80725DD50A00033C7E5 /* SubStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubStore.swift; sourceTree = "<group>"; };
 		520DC81325DD51620033C7E5 /* Sub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub.swift; sourceTree = "<group>"; };
+		520DC82625DD53A40033C7E5 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
+		520DC83D25DD57790033C7E5 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		520DC84425DD59CC0033C7E5 /* SubWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubWorker.swift; sourceTree = "<group>"; };
+		520DC84D25DD60540033C7E5 /* SubRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubRealm.swift; sourceTree = "<group>"; };
+		520DC85825DD64710033C7E5 /* Logger+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+App.swift"; sourceTree = "<group>"; };
+		520DC85E25DD703A0033C7E5 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		524D410425DD11DA00829193 /* SubscriptionsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsApp.swift; sourceTree = "<group>"; };
 		524D410525DD11DA00829193 /* SubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubView.swift; sourceTree = "<group>"; };
 		524D410625DD11DB00829193 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -36,6 +59,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				520DC82225DD53790033C7E5 /* RealmSwift in Frameworks */,
+				520DC82025DD53790033C7E5 /* Realm in Frameworks */,
+				520DC83225DD542A0033C7E5 /* RxSwift in Frameworks */,
+				520DC83025DD542A0033C7E5 /* RxCocoa in Frameworks */,
+				520DC81B25DD52F50033C7E5 /* Injectable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,9 +88,50 @@
 		520DC81225DD51570033C7E5 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				520DC84C25DD604A0033C7E5 /* Realm */,
 				520DC81325DD51620033C7E5 /* Sub.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		520DC82B25DD53BD0033C7E5 /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				520DC84425DD59CC0033C7E5 /* SubWorker.swift */,
+			);
+			path = Worker;
+			sourceTree = "<group>";
+		};
+		520DC83A25DD57170033C7E5 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				520DC83D25DD57790033C7E5 /* RealmService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		520DC84C25DD604A0033C7E5 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				520DC84D25DD60540033C7E5 /* SubRealm.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		520DC85725DD645F0033C7E5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				520DC85825DD64710033C7E5 /* Logger+App.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		520DC85D25DD702D0033C7E5 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				520DC85E25DD703A0033C7E5 /* AppError.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		524D40FE25DD11DA00829193 = {
@@ -79,6 +148,10 @@
 			isa = PBXGroup;
 			children = (
 				52B6F95A25DD470E000FDB75 /* App */,
+				520DC85725DD645F0033C7E5 /* Extension */,
+				520DC85D25DD702D0033C7E5 /* Util */,
+				520DC83A25DD57170033C7E5 /* Service */,
+				520DC82B25DD53BD0033C7E5 /* Worker */,
 				520DC81225DD51570033C7E5 /* Entity */,
 				520DC80625DD50920033C7E5 /* Store */,
 				52B6F95C25DD4720000FDB75 /* View */,
@@ -117,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				524D410425DD11DA00829193 /* SubscriptionsApp.swift */,
+				520DC82625DD53A40033C7E5 /* AppDependency.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -153,6 +227,13 @@
 			dependencies = (
 			);
 			name = "Subscriptions (iOS)";
+			packageProductDependencies = (
+				520DC81A25DD52F50033C7E5 /* Injectable */,
+				520DC81F25DD53790033C7E5 /* Realm */,
+				520DC82125DD53790033C7E5 /* RealmSwift */,
+				520DC82F25DD542A0033C7E5 /* RxCocoa */,
+				520DC83125DD542A0033C7E5 /* RxSwift */,
+			);
 			productName = "Subscriptions (iOS)";
 			productReference = 524D410B25DD11DB00829193 /* Subscriptions.app */;
 			productType = "com.apple.product-type.application";
@@ -200,6 +281,11 @@
 				Base,
 			);
 			mainGroup = 524D40FE25DD11DA00829193;
+			packageReferences = (
+				520DC81925DD52F50033C7E5 /* XCRemoteSwiftPackageReference "Injectable" */,
+				520DC81E25DD53790033C7E5 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				520DC82E25DD542A0033C7E5 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = 524D410C25DD11DB00829193 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -234,7 +320,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				520DC83E25DD57790033C7E5 /* RealmService.swift in Sources */,
 				524D411925DD11DB00829193 /* SubView.swift in Sources */,
+				520DC85F25DD703A0033C7E5 /* AppError.swift in Sources */,
+				520DC82725DD53A40033C7E5 /* AppDependency.swift in Sources */,
+				520DC84525DD59CC0033C7E5 /* SubWorker.swift in Sources */,
+				520DC84E25DD60540033C7E5 /* SubRealm.swift in Sources */,
+				520DC85925DD64710033C7E5 /* Logger+App.swift in Sources */,
 				524D411725DD11DB00829193 /* SubscriptionsApp.swift in Sources */,
 				520DC81425DD51620033C7E5 /* Sub.swift in Sources */,
 				520DC80825DD50A00033C7E5 /* SubStore.swift in Sources */,
@@ -246,8 +338,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				524D411A25DD11DB00829193 /* SubView.swift in Sources */,
+				520DC83F25DD57790033C7E5 /* RealmService.swift in Sources */,
+				520DC86025DD703A0033C7E5 /* AppError.swift in Sources */,
 				524D411825DD11DB00829193 /* SubscriptionsApp.swift in Sources */,
+				520DC84F25DD60540033C7E5 /* SubRealm.swift in Sources */,
+				520DC82825DD53A40033C7E5 /* AppDependency.swift in Sources */,
+				520DC84625DD59CC0033C7E5 /* SubWorker.swift in Sources */,
 				520DC80925DD50A00033C7E5 /* SubStore.swift in Sources */,
+				520DC85A25DD64710033C7E5 /* Logger+App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +587,61 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		520DC81925DD52F50033C7E5 /* XCRemoteSwiftPackageReference "Injectable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mmaheo/Injectable.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		520DC81E25DD53790033C7E5 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.6.0;
+			};
+		};
+		520DC82E25DD542A0033C7E5 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		520DC81A25DD52F50033C7E5 /* Injectable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 520DC81925DD52F50033C7E5 /* XCRemoteSwiftPackageReference "Injectable" */;
+			productName = Injectable;
+		};
+		520DC81F25DD53790033C7E5 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 520DC81E25DD53790033C7E5 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		520DC82125DD53790033C7E5 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 520DC81E25DD53790033C7E5 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+		520DC82F25DD542A0033C7E5 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 520DC82E25DD542A0033C7E5 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		520DC83125DD542A0033C7E5 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 520DC82E25DD542A0033C7E5 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 524D40FF25DD11DA00829193 /* Project object */;
 }

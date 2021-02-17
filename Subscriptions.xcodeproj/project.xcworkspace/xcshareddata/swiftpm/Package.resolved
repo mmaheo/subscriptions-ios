@@ -1,0 +1,43 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Injectable",
+        "repositoryURL": "https://github.com/mmaheo/Injectable.git",
+        "state": {
+          "branch": null,
+          "revision": "2a46831546c74e9f7edf1bc9f36ae7c9691ebc84",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "Realm",
+        "repositoryURL": "https://github.com/realm/realm-cocoa.git",
+        "state": {
+          "branch": null,
+          "revision": "44b9632b22240f0baa4b50964c5722e27094aea0",
+          "version": "10.6.0"
+        }
+      },
+      {
+        "package": "RealmDatabase",
+        "repositoryURL": "https://github.com/realm/realm-core",
+        "state": {
+          "branch": null,
+          "revision": "6431a4bc6530ec16731ef1c66b379cbef6da01f0",
+          "version": "10.5.0"
+        }
+      },
+      {
+        "package": "RxSwift",
+        "repositoryURL": "https://github.com/ReactiveX/RxSwift.git",
+        "state": {
+          "branch": null,
+          "revision": "7e01c05f25c025143073eaa3be3532f9375c614b",
+          "version": "6.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

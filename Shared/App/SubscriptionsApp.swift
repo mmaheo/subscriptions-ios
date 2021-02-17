@@ -12,6 +12,7 @@ struct SubscriptionsApp: App {
     
     // MARK: - Properties
     
+    private let dependencyManager = AppDependency()
     private let subStore = SubStore()
     
     // MARK: - Body

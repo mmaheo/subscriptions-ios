@@ -9,10 +9,25 @@ import Foundation
 
 struct Sub: Identifiable {
     
-    let id = UUID()
-    let name: String
-    let price: Float
+    // MARK: - Properties
     
+    let id: String
+    let name: String
+    let price: Double
+    
+    // MARK: - Lifecycle
+    
+    init(name: String, price: Double) {
+        self.id = UUID().uuidString
+        self.name = name
+        self.price = price
+    }
+    
+    init(subRealm: SubRealm) {
+        self.id = subRealm.id
+        self.name = subRealm.name
+        self.price = subRealm.price
+    }
     
 }
 

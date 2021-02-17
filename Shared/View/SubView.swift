@@ -16,11 +16,29 @@ struct SubView: View {
     // MARK: - Body
     
     var body: some View {
-        List(subStore.subs) { sub in
-            HStack {
-                Text(sub.name)
-                Spacer()
-                Text("\(sub.price) $")
+        NavigationView {
+            List(subStore.subs) { sub in
+                HStack {
+                    Text(sub.name)
+                    Spacer()
+                    Text("\(sub.price) $")
+                }
+            }
+            .onAppear {
+                subStore.dispatch(action: .fetchSubs)
+            }
+            .alert(item: $subStore.error) { error in
+                Alert(title: Text(error.title),
+                      message: Text(error.message),
+                      dismissButton: .default(Text(error.dimissActionTitle)))
+            }
+            .navigationTitle("Subscriptions")
+            .toolbar {
+                Button(action: {
+                    subStore.dispatch(action: .addSub)
+                }, label: {
+                    Image(systemName: "plus")
+                })
             }
         }
     }
