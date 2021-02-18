@@ -69,6 +69,8 @@ final class SubStore: ObservableObject {
     // MARK: - Private Actions
     
     private func fetchSubsAction() {
+        Logger.userAction.log("Fetch subscriptions")
+        
         subWorker
             .fetchSubs()
             .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
@@ -86,6 +88,8 @@ final class SubStore: ObservableObject {
     }
     
     private func addSubAction(name: String, price: String, recurrence: Sub.Recurrence, dueEvery: Date) {
+        Logger.userAction.log("Add subscriptions")
+        
         guard let priceInDouble = formatterManager.stringToDouble(value: price) else { return }
         
         let subToAdd = Sub(name: name, price: priceInDouble, recurrence: recurrence, dueEvery: dueEvery)
@@ -107,6 +111,8 @@ final class SubStore: ObservableObject {
     }
     
     private func deleteAction(sub: Sub) {
+        Logger.userAction.log("Delete subscriptions")
+        
         subWorker
             .delete(sub: sub)
             .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInteractive))

@@ -21,7 +21,7 @@ final class RealmService {
         realmConfig = Realm.Configuration()
         
         if let fileURL = realmConfig.fileURL?.absoluteString {
-            Logger.realm.info("Realm file: \(fileURL)")
+            Logger.realm.debug("Realm file: \(fileURL)")
         }
     }
     
@@ -38,8 +38,12 @@ final class RealmService {
                     realm.add(element)
                 }
                 
+                Logger.realm.log("Create object with success")
+                
                 completable(.completed)
             } catch {
+                Logger.realm.error("Fail to create object. \(error.localizedDescription)")
+                
                 completable(.error(error))
             }
             
@@ -56,8 +60,12 @@ final class RealmService {
             let objects = realm.objects(type)
             
             if let keyPath = keyPath {
+                Logger.realm.log("Read objects and sort them")
+                
                 single(.success(objects.sorted(byKeyPath: keyPath, ascending: ascending)))
             } else {
+                Logger.realm.log("Read objects")
+                
                 single(.success(objects))
             }
             
@@ -78,8 +86,12 @@ final class RealmService {
                     }
                 }
                 
+                Logger.realm.log("Delete object with success")
+                
                 completable(.completed)
             } catch {
+                Logger.realm.error("Failed to delete object")
+                
                 completable(.error(error))
             }
             

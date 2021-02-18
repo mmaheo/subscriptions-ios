@@ -11,4 +11,5 @@ extension Logger {
     private static var subsystem = Bundle.main.bundleIdentifier!
 
     static let realm = Logger(subsystem: subsystem, category: "realm")
+    static let userAction = Logger(subsystem: subsystem, category: "userAction")
 }

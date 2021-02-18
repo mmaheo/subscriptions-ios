@@ -14,14 +14,6 @@ final class FormatterManager: Injectable {
     
     private let numberFormatter = NumberFormatter()
     
-    // MARK: - Lifecycle
-    
-    init() {
-        guard let preferredIdentifier = Locale.preferredLanguages.first else { return }
-        
-        numberFormatter.locale = Locale(identifier: preferredIdentifier)
-    }
-    
     // MARK: - Methods
     
     func doubleToString(value: Double, isCurrency: Bool) -> String? {
