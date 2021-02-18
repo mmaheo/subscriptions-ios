@@ -32,42 +32,10 @@ struct Sub: Identifiable {
     let recurrence: Recurrence
     let dueEvery: Date
     
-    var daysLeft: Int? {
-        let calendar = Calendar.current
-        
-        let today = calendar.startOfDay(for: Date())
-        let dueDate = calendar.startOfDay(for: dueEvery)
-
-        let daysLeft = calendar.dateComponents([.day], from: today, to: dueDate).day
-        
-        // If days left is less than 0, we must calculate the next billing. IE: (7 days, 1 month, 1 year).
-        // Otherwise, return days left.
-        if let daysLeft = daysLeft, daysLeft < 0 {
-            let nextDueDate: Date?
-            
-            switch recurrence {
-            case .weekly:
-                nextDueDate = calendar.date(byAdding: .day, value: 7, to: dueDate)
-            case .monthly:
-                nextDueDate = calendar.date(byAdding: .month, value: 1, to: dueDate)
-            case .yearly:
-                nextDueDate = calendar.date(byAdding: .year, value: 1, to: dueDate)
-            }
-            
-            if let nextDueDate = nextDueDate {
-                return calendar.dateComponents([.day], from: today, to: nextDueDate).day
-            }
-            
-            return nil
-        }
-        
-        return daysLeft
+    var daysLeftBeforeNextBilling: Int {
+        BillingManager.shared.daysLeftBeforeNextBilling(sub: self)
     }
-    
-    var wrappedDaysLeft: Int {
-        daysLeft ?? 0
-    }
-    
+        
     // MARK: - Lifecycle
     
     init(name: String, price: Double, recurrence: Recurrence, dueEvery: Date) {

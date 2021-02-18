@@ -33,8 +33,21 @@ final class SubWorker: Injectable {
             .read(ofType: SubRealm.self)
             .map{ Array($0)
                 .compactMap { Sub(subRealm: $0) }
-                .sorted { $0.wrappedDaysLeft < $1.wrappedDaysLeft }
+                .sorted(by: self.sortByNextBillingAndAToZ(sub1:sub2:))
             }
+    }
+    
+    // MARK: - Private Methods
+    
+    private func sortByNextBillingAndAToZ(sub1: Sub, sub2: Sub) -> Bool {
+        let nextBillingSub1 = sub1.daysLeftBeforeNextBilling
+        let nextBillingSub2 = sub2.daysLeftBeforeNextBilling
+        
+        if nextBillingSub1 != nextBillingSub2 {
+            return nextBillingSub1 > nextBillingSub2
+        }
+        
+        return sub1.name.localizedStandardCompare(sub2.name) == .orderedAscending
     }
     
 }

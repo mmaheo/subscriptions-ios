@@ -32,10 +32,8 @@ struct SubComponent: View {
                 Text("\(sub.price, specifier: "%.2f")")
                     .font(.headline)
                 
-                sub.daysLeft.map {
-                    Text("\($0) \($0 > 1 ? "days" : "day") left")
-                        .font(.caption)
-                }
+                Text("\(sub.daysLeftBeforeNextBilling) \(sub.daysLeftBeforeNextBilling > 1 ? "days" : "day") left")
+                    .font(.caption)
             }
         }
         .frame(minHeight: 80)

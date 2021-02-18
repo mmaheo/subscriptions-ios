@@ -43,6 +43,10 @@
 		524D411A25DD11DB00829193 /* SubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524D410525DD11DA00829193 /* SubView.swift */; };
 		524D411B25DD11DB00829193 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 524D410625DD11DB00829193 /* Assets.xcassets */; };
 		524D411C25DD11DB00829193 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 524D410625DD11DB00829193 /* Assets.xcassets */; };
+		52706DE925DE9AD2007438CB /* BillingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52706DE825DE9AD2007438CB /* BillingManager.swift */; };
+		52706DEA25DE9AD2007438CB /* BillingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52706DE825DE9AD2007438CB /* BillingManager.swift */; };
+		52706DF825DEA19C007438CB /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = 52706DF725DEA19C007438CB /* SwiftDate */; };
+		52706DFC25DEA1A8007438CB /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = 52706DFB25DEA1A8007438CB /* SwiftDate */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +68,7 @@
 		524D411325DD11DB00829193 /* Subscriptions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Subscriptions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		524D411525DD11DB00829193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		524D411625DD11DB00829193 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		52706DE825DE9AD2007438CB /* BillingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +78,7 @@
 			files = (
 				520DC82225DD53790033C7E5 /* RealmSwift in Frameworks */,
 				520DC82025DD53790033C7E5 /* Realm in Frameworks */,
+				52706DF825DEA19C007438CB /* SwiftDate in Frameworks */,
 				520DC83225DD542A0033C7E5 /* RxSwift in Frameworks */,
 				520DC83025DD542A0033C7E5 /* RxCocoa in Frameworks */,
 				520DC81B25DD52F50033C7E5 /* Injectable in Frameworks */,
@@ -85,6 +91,7 @@
 			files = (
 				520DC86E25DD785D0033C7E5 /* RealmSwift in Frameworks */,
 				520DC86C25DD785D0033C7E5 /* Realm in Frameworks */,
+				52706DFC25DEA1A8007438CB /* SwiftDate in Frameworks */,
 				520DC87225DD785E0033C7E5 /* RxSwift in Frameworks */,
 				520DC87025DD785E0033C7E5 /* RxCocoa in Frameworks */,
 				520DC86A25DD785D0033C7E5 /* Injectable in Frameworks */,
@@ -147,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				520DC85E25DD703A0033C7E5 /* AppError.swift */,
+				52706DE825DE9AD2007438CB /* BillingManager.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -268,6 +276,7 @@
 				520DC82125DD53790033C7E5 /* RealmSwift */,
 				520DC82F25DD542A0033C7E5 /* RxCocoa */,
 				520DC83125DD542A0033C7E5 /* RxSwift */,
+				52706DF725DEA19C007438CB /* SwiftDate */,
 			);
 			productName = "Subscriptions (iOS)";
 			productReference = 524D410B25DD11DB00829193 /* Subscriptions.app */;
@@ -292,6 +301,7 @@
 				520DC86D25DD785D0033C7E5 /* RealmSwift */,
 				520DC86F25DD785E0033C7E5 /* RxCocoa */,
 				520DC87125DD785E0033C7E5 /* RxSwift */,
+				52706DFB25DEA1A8007438CB /* SwiftDate */,
 			);
 			productName = "Subscriptions (macOS)";
 			productReference = 524D411325DD11DB00829193 /* Subscriptions.app */;
@@ -327,6 +337,7 @@
 				520DC81925DD52F50033C7E5 /* XCRemoteSwiftPackageReference "Injectable" */,
 				520DC81E25DD53790033C7E5 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				520DC82E25DD542A0033C7E5 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				52706DF425DEA18F007438CB /* XCRemoteSwiftPackageReference "SwiftDate" */,
 			);
 			productRefGroup = 524D410C25DD11DB00829193 /* Products */;
 			projectDirPath = "";
@@ -367,6 +378,7 @@
 				524D411925DD11DB00829193 /* SubView.swift in Sources */,
 				520DC85F25DD703A0033C7E5 /* AppError.swift in Sources */,
 				520DC82725DD53A40033C7E5 /* AppDependency.swift in Sources */,
+				52706DE925DE9AD2007438CB /* BillingManager.swift in Sources */,
 				520DC84525DD59CC0033C7E5 /* SubWorker.swift in Sources */,
 				520DC84E25DD60540033C7E5 /* SubRealm.swift in Sources */,
 				520DC85925DD64710033C7E5 /* Logger+App.swift in Sources */,
@@ -386,6 +398,7 @@
 				520DC86025DD703A0033C7E5 /* AppError.swift in Sources */,
 				520DC86525DD783E0033C7E5 /* AddSubView.swift in Sources */,
 				524D411825DD11DB00829193 /* SubscriptionsApp.swift in Sources */,
+				52706DEA25DE9AD2007438CB /* BillingManager.swift in Sources */,
 				520DC87525DD78E90033C7E5 /* Sub.swift in Sources */,
 				520DC84F25DD60540033C7E5 /* SubRealm.swift in Sources */,
 				520DC82825DD53A40033C7E5 /* AppDependency.swift in Sources */,
@@ -660,6 +673,14 @@
 				minimumVersion = 6.1.0;
 			};
 		};
+		52706DF425DEA18F007438CB /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/malcommac/SwiftDate.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.3.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -712,6 +733,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 520DC82E25DD542A0033C7E5 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		52706DF725DEA19C007438CB /* SwiftDate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52706DF425DEA18F007438CB /* XCRemoteSwiftPackageReference "SwiftDate" */;
+			productName = SwiftDate;
+		};
+		52706DFB25DEA1A8007438CB /* SwiftDate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52706DF425DEA18F007438CB /* XCRemoteSwiftPackageReference "SwiftDate" */;
+			productName = SwiftDate;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
