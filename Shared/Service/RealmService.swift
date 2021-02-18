@@ -65,4 +65,26 @@ final class RealmService {
         }
     }
     
+    func delete<Element: Object>(ofType type: Element.Type, forPrimaryKey primaryKey: String) -> Completable {
+        Completable.create { [weak self] completable in
+            guard let self = self,
+                  let realm = try? Realm(configuration: self.realmConfig)
+            else { return Disposables.create() }
+            
+            do {
+                try realm.write {
+                    if let elementToDelete = realm.object(ofType: type, forPrimaryKey: primaryKey) {
+                        realm.delete(elementToDelete)
+                    }
+                }
+                
+                completable(.completed)
+            } catch {
+                completable(.error(error))
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
 }

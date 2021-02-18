@@ -13,6 +13,7 @@ import OSLog
 enum SubStoreAction {
     case fetchSubs
     case addSub(name: String, price: String, recurrence: Sub.Recurrence, dueEvery: Date)
+    case delete(sub: Sub)
 }
 
 final class SubStore: ObservableObject {
@@ -46,6 +47,8 @@ final class SubStore: ObservableObject {
             fetchSubsAction()
         case let .addSub(name, price, recurrence, dueEvery):
             addSubAction(name: name, price: price, recurrence: recurrence, dueEvery: dueEvery)
+        case let .delete(sub):
+            deleteAction(sub: sub)
         }
     }
     
@@ -86,7 +89,7 @@ final class SubStore: ObservableObject {
         
         subWorker
             .create(sub: subToAdd)
-            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInteractive))
             .observe(on: MainScheduler.instance)
             .subscribe(onCompleted: { [weak self] in
                 guard let self = self else { return }
@@ -97,6 +100,23 @@ final class SubStore: ObservableObject {
                 
                 self.error = AppError(error: error)
             })
+            .disposed(by: disposeBag)
+    }
+    
+    private func deleteAction(sub: Sub) {
+        subWorker
+            .delete(sub: sub)
+            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInteractive))
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] in
+                guard let self = self else { return }
+                
+                self.subs.removeAll(where: { $0.id == sub.id })
+            } onError: {[weak self] error in
+                guard let self = self else { return }
+                
+                self.error = AppError(error: error)
+            }
             .disposed(by: disposeBag)
     }
     
