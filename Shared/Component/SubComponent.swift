@@ -16,30 +16,39 @@ struct SubComponent: View {
     // MARK: - Body
     
     var body: some View {
-        
-        HStack {
-            VStack(alignment: .leading) {
-                Text(sub.name)
-                    .font(.headline)
-                
-                Text(sub.recurrence.localized)
-                    .font(.caption)
-            }
-            
-            Spacer()
-            
-            VStack(alignment: .trailing) {
-                Text("\(sub.price, specifier: "%.2f")")
-                    .font(.headline)
+        VStack {
+            HStack {
+                Spacer()
                 
                 Text("\(sub.daysLeftBeforeNextBilling) \(sub.daysLeftBeforeNextBilling > 1 ? "days" : "day") left")
                     .font(.caption)
             }
+            
+            HStack {
+                VStack(alignment: .leading) {
+                    Spacer()
+                    
+                    Text(sub.name)
+                        .font(.subheadline)
+                        .lineLimit(1)
+                    
+                    sub.priceWithCurrency.map {
+                        Text($0)
+                            .font(.title)
+                            .bold()
+                            .lineLimit(1)
+                    }
+                }
+                
+                Spacer()
+            }
         }
-        .frame(minHeight: 80)
+        .frame(height: 80)
         .foregroundColor(.white)
         .padding()
-        .background(Color.red)
+        .background(LinearGradient(gradient: Gradient(colors: [.purple, .blue]),
+                                   startPoint: .topLeading,
+                                   endPoint: .bottomTrailing))
         .cornerRadius(8)
     }
 }

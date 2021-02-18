@@ -35,6 +35,10 @@ struct Sub: Identifiable {
     var daysLeftBeforeNextBilling: Int {
         BillingManager.shared.daysLeftBeforeNextBilling(sub: self)
     }
+    
+    var priceWithCurrency: String? {
+        BillingManager.shared.convertWithCurrency(price: price)
+    }
         
     // MARK: - Lifecycle
     

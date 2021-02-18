@@ -11,14 +11,14 @@ struct AddSubView: View {
     
     // MARK: - Properties
     
+    @EnvironmentObject private var subStore: SubStore
+    
     @Binding var isPresented: Bool
     
     @State private var name = ""
     @State private var price: String = ""
     @State private var recurrence = Sub.Recurrence.monthly
     @State private var dueEvery = Date()
-    
-    @EnvironmentObject private var subStore: SubStore
     
     private var isFormValid: Bool {
         guard let price = Double(price),

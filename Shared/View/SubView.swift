@@ -11,9 +11,9 @@ struct SubView: View {
     
     // MARK: - Properties
     
-    @State private var isShowingAddSubView = false
-    
     @EnvironmentObject private var subStore: SubStore
+    
+    @State private var isShowingAddSubView = false
     
     private let columns = [
         GridItem(.flexible(), spacing: 16),
@@ -26,8 +26,10 @@ struct SubView: View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 16) {
-                    ForEach(subStore.subs) {
-                        SubComponent(sub: $0)
+                    ForEach(subStore.subs) { sub in
+                        NavigationLink(destination: SubDetailsView(sub: sub)) {
+                            SubComponent(sub: sub)
+                        }
                     }
                 }
                 .padding(.horizontal)

@@ -14,11 +14,12 @@ final class BillingManager {
     static let shared = BillingManager()
     
     private let calendar = Calendar.current
+    private let currencyFormatter = NumberFormatter()
     
     // MARK: - Lifecycle
     
     private init() {
-        
+        currencyFormatter.numberStyle = .currency
     }
     
     // MARK: - Methods
@@ -32,6 +33,10 @@ final class BillingManager {
         let components = calendar.dateComponents([.day], from: today, to: nextBillingDate)
                         
         return components.day ?? 0
+    }
+    
+    func convertWithCurrency(price: Double) -> String? {
+        currencyFormatter.string(from: price as NSNumber)
     }
     
     // MARK: - Private Methods
