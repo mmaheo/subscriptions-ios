@@ -45,8 +45,6 @@
 		524D411C25DD11DB00829193 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 524D410625DD11DB00829193 /* Assets.xcassets */; };
 		52706DE925DE9AD2007438CB /* BillingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52706DE825DE9AD2007438CB /* BillingManager.swift */; };
 		52706DEA25DE9AD2007438CB /* BillingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52706DE825DE9AD2007438CB /* BillingManager.swift */; };
-		52706E0225DEBB94007438CB /* SubDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52706E0125DEBB94007438CB /* SubDetailsView.swift */; };
-		52706E0325DEBB94007438CB /* SubDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52706E0125DEBB94007438CB /* SubDetailsView.swift */; };
 		52FF31D225DECE730024BA2F /* FormatterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF31D125DECE730024BA2F /* FormatterManager.swift */; };
 		52FF31D325DECE730024BA2F /* FormatterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF31D125DECE730024BA2F /* FormatterManager.swift */; };
 /* End PBXBuildFile section */
@@ -71,7 +69,6 @@
 		524D411525DD11DB00829193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		524D411625DD11DB00829193 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		52706DE825DE9AD2007438CB /* BillingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingManager.swift; sourceTree = "<group>"; };
-		52706E0125DEBB94007438CB /* SubDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubDetailsView.swift; sourceTree = "<group>"; };
 		52FF31D125DECE730024BA2F /* FormatterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -261,7 +258,6 @@
 			children = (
 				524D410525DD11DA00829193 /* SubView.swift */,
 				520DC86325DD783E0033C7E5 /* AddSubView.swift */,
-				52706E0125DEBB94007438CB /* SubDetailsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -384,7 +380,6 @@
 			files = (
 				520DC83E25DD57790033C7E5 /* RealmService.swift in Sources */,
 				520DC86425DD783E0033C7E5 /* AddSubView.swift in Sources */,
-				52706E0225DEBB94007438CB /* SubDetailsView.swift in Sources */,
 				52FF31D225DECE730024BA2F /* FormatterManager.swift in Sources */,
 				524D411925DD11DB00829193 /* SubView.swift in Sources */,
 				520DC85F25DD703A0033C7E5 /* AppError.swift in Sources */,
@@ -406,7 +401,6 @@
 			files = (
 				524D411A25DD11DB00829193 /* SubView.swift in Sources */,
 				520DC83F25DD57790033C7E5 /* RealmService.swift in Sources */,
-				52706E0325DEBB94007438CB /* SubDetailsView.swift in Sources */,
 				52FF31D325DECE730024BA2F /* FormatterManager.swift in Sources */,
 				520DC86025DD703A0033C7E5 /* AppError.swift in Sources */,
 				520DC86525DD783E0033C7E5 /* AddSubView.swift in Sources */,

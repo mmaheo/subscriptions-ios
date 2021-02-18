@@ -20,14 +20,15 @@ final class SubStore: ObservableObject {
 
     // MARK: - Properties
     
-    @Published private(set) var subs: [Sub]
-    @Published var error: AppError?
-    
-    var totalAmount: String? {
-        let amount = Double(subs.reduce(0) { $0 + $1.monthlyPrice })
-        
-        return FormatterManager.shared.doubleToString(value: amount, isCurrency: true)
+    @Published private(set) var subs: [Sub] {
+        didSet {
+            let amount = Double(subs.reduce(0) { $0 + $1.monthlyPrice })
+            
+            totalAmount = FormatterManager.shared.doubleToString(value: amount, isCurrency: true)
+        }
     }
+    @Published private(set) var totalAmount: String?
+    @Published var error: AppError?
     
     @Inject private var subWorker: SubWorker
     

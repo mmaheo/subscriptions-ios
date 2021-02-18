@@ -28,7 +28,6 @@ struct SubView: View {
                 makeTotalAmountView()
                 makeSubsGridView()
             }
-            .padding(.horizontal)
             .onAppear { subStore.dispatch(action: .fetchSubs) }
             .alert(item: $subStore.error) { error in
                 Alert(title: Text(error.title),
@@ -65,7 +64,7 @@ struct SubView: View {
             
             Spacer()
         }
-        .padding(.vertical)
+        .padding()
     }
     
     private func makeSubsGridView() -> some View {
@@ -81,6 +80,7 @@ struct SubView: View {
                     })
             }
         }
+        .padding(.horizontal)
     }
     
 }

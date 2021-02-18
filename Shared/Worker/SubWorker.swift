@@ -48,7 +48,7 @@ final class SubWorker: Injectable {
         let nextBillingSub2 = sub2.daysLeftBeforeNextBilling
         
         if nextBillingSub1 != nextBillingSub2 {
-            return nextBillingSub1 > nextBillingSub2
+            return nextBillingSub1 < nextBillingSub2
         }
         
         return sub1.name.localizedStandardCompare(sub2.name) == .orderedAscending

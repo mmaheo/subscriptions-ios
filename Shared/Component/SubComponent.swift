@@ -37,6 +37,7 @@ struct SubComponent: View {
                             .font(.title)
                             .bold()
                             .lineLimit(1)
+                            .minimumScaleFactor(0.5)
                     }
                 }
                 
