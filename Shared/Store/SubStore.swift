@@ -20,17 +20,19 @@ final class SubStore: ObservableObject {
 
     // MARK: - Properties
     
+    @Inject private var subWorker: SubWorker
+    @Inject private var billingManager: BillingManager
+    @Inject private var formatterManager: FormatterManager
+    
     @Published private(set) var subs: [Sub] {
         didSet {
-            let amount = Double(subs.reduce(0) { $0 + $1.monthlyPrice })
+            let amount = Double(subs.reduce(0) { $0 + billingManager.monthlyPrice(sub: $1) })
             
-            totalAmount = FormatterManager.shared.doubleToString(value: amount, isCurrency: true)
+            totalAmount = formatterManager.doubleToString(value: amount, isCurrency: true)
         }
     }
     @Published private(set) var totalAmount: String?
     @Published var error: AppError?
-    
-    @Inject private var subWorker: SubWorker
     
     private let disposeBag = DisposeBag()
 
@@ -56,7 +58,7 @@ final class SubStore: ObservableObject {
     // MARK: - Methods
     
     func isFormValid(price: String, name: String) -> Bool {
-        guard let price = FormatterManager.shared.stringToDouble(value: price),
+        guard let price = formatterManager.stringToDouble(value: price),
               price > 0,
               !name.isEmpty
         else { return false }
@@ -84,7 +86,7 @@ final class SubStore: ObservableObject {
     }
     
     private func addSubAction(name: String, price: String, recurrence: Sub.Recurrence, dueEvery: Date) {
-        guard let priceInDouble = FormatterManager.shared.stringToDouble(value: price) else { return }
+        guard let priceInDouble = formatterManager.stringToDouble(value: price) else { return }
         
         let subToAdd = Sub(name: name, price: priceInDouble, recurrence: recurrence, dueEvery: dueEvery)
         
@@ -95,7 +97,7 @@ final class SubStore: ObservableObject {
             .subscribe(onCompleted: { [weak self] in
                 guard let self = self else { return }
                 
-                self.subs.insert(subToAdd, at: 0)
+                self.fetchSubsAction()
             }, onError: { [weak self] error in
                 guard let self = self else { return }
                 
@@ -112,7 +114,7 @@ final class SubStore: ObservableObject {
             .subscribe { [weak self] in
                 guard let self = self else { return }
                 
-                self.subs.removeAll(where: { $0.id == sub.id })
+                self.fetchSubsAction()
             } onError: {[weak self] error in
                 guard let self = self else { return }
                 

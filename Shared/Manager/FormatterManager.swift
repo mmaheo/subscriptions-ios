@@ -6,18 +6,17 @@
 //
 
 import Foundation
+import Injectable
 
-final class FormatterManager {
+final class FormatterManager: Injectable {
     
     // MARK: - Properties
-    
-    static let shared = FormatterManager()
     
     private let numberFormatter = NumberFormatter()
     
     // MARK: - Lifecycle
     
-    private init() {
+    init() {
         guard let preferredIdentifier = Locale.preferredLanguages.first else { return }
         
         numberFormatter.locale = Locale(identifier: preferredIdentifier)

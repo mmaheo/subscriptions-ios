@@ -6,12 +6,24 @@
 //
 
 import SwiftUI
+import Injectable
 
 struct SubComponent: View {
     
     // MARK: - Properties
     
+    @Inject private var billingManager: BillingManager
+    @Inject private var formatterManager: FormatterManager
+    
     let sub: Sub
+    
+    private var daysLeftBeforeNextBilling: Int {
+        billingManager.daysLeftBeforeNextBilling(sub: sub)
+    }
+    
+    private var price: String? {
+        formatterManager.doubleToString(value: sub.price, isCurrency: true)
+    }
     
     // MARK: - Body
     
@@ -20,7 +32,7 @@ struct SubComponent: View {
             HStack {
                 Spacer()
                 
-                Text("\(sub.daysLeftBeforeNextBilling) \(sub.daysLeftBeforeNextBilling > 1 ? "days" : "day") left")
+                Text("\(daysLeftBeforeNextBilling) \(daysLeftBeforeNextBilling > 1 ? "days" : "day") left")
                     .font(.caption)
             }
             
@@ -32,7 +44,7 @@ struct SubComponent: View {
                         .font(.subheadline)
                         .lineLimit(1)
                     
-                    sub.priceWithCurrency.map {
+                    price.map {
                         Text($0)
                             .font(.title)
                             .bold()

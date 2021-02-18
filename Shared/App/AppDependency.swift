@@ -11,12 +11,16 @@ final class AppDependency {
     
     // MARK: - Properties
     
+    private let billingManager: BillingManager
+    private let formatterManager: FormatterManager
     private let subWorker: SubWorker
     
     // MARK: - Lifecycle
     
     init() {
-        self.subWorker = SubWorker(realmService: RealmService())
+        billingManager = BillingManager()
+        formatterManager = FormatterManager()
+        subWorker = SubWorker(realmService: RealmService(), billingManager: billingManager)
 
         registerDependencies()
     }
@@ -26,6 +30,8 @@ final class AppDependency {
     private func registerDependencies() {
         let resolver = Resolver.shared
         
+        resolver.register(billingManager)
+        resolver.register(formatterManager)
         resolver.register(subWorker)
     }
 }

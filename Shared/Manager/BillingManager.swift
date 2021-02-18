@@ -6,18 +6,13 @@
 //
 
 import Foundation
+import Injectable
 
-final class BillingManager {
+final class BillingManager: Injectable {
     
     // MARK: - Properties
     
-    static let shared = BillingManager()
-    
     private let calendar = Calendar.current
-    
-    // MARK: - Lifecycle
-    
-    private init() { }
     
     // MARK: - Methods
     

@@ -13,11 +13,13 @@ final class SubWorker: Injectable {
     // MARK: - Properties
     
     private let realmService: RealmService
+    private let billingManager: BillingManager
     
     // MARK: - Lifecycle
     
-    init(realmService: RealmService) {
+    init(realmService: RealmService, billingManager: BillingManager) {
         self.realmService = realmService
+        self.billingManager = billingManager
     }
     
     // MARK: - Methods
@@ -44,8 +46,8 @@ final class SubWorker: Injectable {
     // MARK: - Private Methods
     
     private func sortByNextBillingAndAToZ(sub1: Sub, sub2: Sub) -> Bool {
-        let nextBillingSub1 = sub1.daysLeftBeforeNextBilling
-        let nextBillingSub2 = sub2.daysLeftBeforeNextBilling
+        let nextBillingSub1 = billingManager.daysLeftBeforeNextBilling(sub: sub1)
+        let nextBillingSub2 = billingManager.daysLeftBeforeNextBilling(sub: sub2)
         
         if nextBillingSub1 != nextBillingSub2 {
             return nextBillingSub1 < nextBillingSub2
