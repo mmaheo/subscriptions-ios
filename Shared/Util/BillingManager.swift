@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftDate
 
 final class BillingManager {
     
@@ -14,17 +13,22 @@ final class BillingManager {
     
     static let shared = BillingManager()
     
+    private let calendar = Calendar.current
+    
     // MARK: - Lifecycle
     
-    private init() { }
+    private init() {
+        
+    }
     
     // MARK: - Methods
     
     func daysLeftBeforeNextBilling(sub: Sub) -> Int {
-        let nextBilling = nextBillingDate(dueEvery: sub.dueEvery, recurrence: sub.recurrence)
-        let calendar = Calendar.current
+        guard let nextBilling = nextBillingDate(dueEvery: sub.dueEvery, recurrence: sub.recurrence) else { return 0 }
+        
         let today = calendar.startOfDay(for: Date())
         let nextBillingDate = calendar.startOfDay(for: nextBilling)
+        
         let components = calendar.dateComponents([.day], from: today, to: nextBillingDate)
                         
         return components.day ?? 0
@@ -32,18 +36,23 @@ final class BillingManager {
     
     // MARK: - Private Methods
     
-    private func nextBillingDate(dueEvery: Date, recurrence: Sub.Recurrence) -> Date {
-        if dueEvery.isAfterDate(Date(), orEqual: true, granularity: .day) {
+    private func nextBillingDate(dueEvery: Date?, recurrence: Sub.Recurrence) -> Date? {
+        guard let dueEvery = dueEvery else { return nil }
+        
+        let today = calendar.startOfDay(for: Date())
+        let dueAt = calendar.startOfDay(for: dueEvery)
+        
+        if dueAt >= today {
             return dueEvery
         }
         
         switch recurrence {
         case .weekly:
-            return nextBillingDate(dueEvery: dueEvery + 7.days, recurrence: recurrence)
+            return nextBillingDate(dueEvery: calendar.date(byAdding: .day, value: 7, to: dueEvery), recurrence: recurrence)
         case .monthly:
-            return nextBillingDate(dueEvery: dueEvery + 1.months, recurrence: recurrence)
+            return nextBillingDate(dueEvery: calendar.date(byAdding: .month, value: 1, to: dueEvery), recurrence: recurrence)
         case .yearly:
-            return nextBillingDate(dueEvery: dueEvery + 1.years, recurrence: recurrence)
+            return nextBillingDate(dueEvery: calendar.date(byAdding: .year, value: 1, to: dueEvery), recurrence: recurrence)
         }
     }
     
