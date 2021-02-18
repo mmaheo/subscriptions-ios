@@ -47,6 +47,8 @@
 		52706DEA25DE9AD2007438CB /* BillingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52706DE825DE9AD2007438CB /* BillingManager.swift */; };
 		52706E0225DEBB94007438CB /* SubDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52706E0125DEBB94007438CB /* SubDetailsView.swift */; };
 		52706E0325DEBB94007438CB /* SubDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52706E0125DEBB94007438CB /* SubDetailsView.swift */; };
+		52FF31D225DECE730024BA2F /* FormatterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF31D125DECE730024BA2F /* FormatterManager.swift */; };
+		52FF31D325DECE730024BA2F /* FormatterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF31D125DECE730024BA2F /* FormatterManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +72,7 @@
 		524D411625DD11DB00829193 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		52706DE825DE9AD2007438CB /* BillingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingManager.swift; sourceTree = "<group>"; };
 		52706E0125DEBB94007438CB /* SubDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubDetailsView.swift; sourceTree = "<group>"; };
+		52FF31D125DECE730024BA2F /* FormatterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,7 +156,6 @@
 			isa = PBXGroup;
 			children = (
 				520DC85E25DD703A0033C7E5 /* AppError.swift */,
-				52706DE825DE9AD2007438CB /* BillingManager.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -190,6 +192,7 @@
 				52B6F95A25DD470E000FDB75 /* App */,
 				520DC85725DD645F0033C7E5 /* Extension */,
 				520DC85D25DD702D0033C7E5 /* Util */,
+				52706E0925DEC8C6007438CB /* Manager */,
 				520DC83A25DD57170033C7E5 /* Service */,
 				520DC82B25DD53BD0033C7E5 /* Worker */,
 				520DC81225DD51570033C7E5 /* Entity */,
@@ -225,6 +228,15 @@
 				524D411625DD11DB00829193 /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		52706E0925DEC8C6007438CB /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				52706DE825DE9AD2007438CB /* BillingManager.swift */,
+				52FF31D125DECE730024BA2F /* FormatterManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		52B6F95A25DD470E000FDB75 /* App */ = {
@@ -373,6 +385,7 @@
 				520DC83E25DD57790033C7E5 /* RealmService.swift in Sources */,
 				520DC86425DD783E0033C7E5 /* AddSubView.swift in Sources */,
 				52706E0225DEBB94007438CB /* SubDetailsView.swift in Sources */,
+				52FF31D225DECE730024BA2F /* FormatterManager.swift in Sources */,
 				524D411925DD11DB00829193 /* SubView.swift in Sources */,
 				520DC85F25DD703A0033C7E5 /* AppError.swift in Sources */,
 				520DC82725DD53A40033C7E5 /* AppDependency.swift in Sources */,
@@ -394,6 +407,7 @@
 				524D411A25DD11DB00829193 /* SubView.swift in Sources */,
 				520DC83F25DD57790033C7E5 /* RealmService.swift in Sources */,
 				52706E0325DEBB94007438CB /* SubDetailsView.swift in Sources */,
+				52FF31D325DECE730024BA2F /* FormatterManager.swift in Sources */,
 				520DC86025DD703A0033C7E5 /* AppError.swift in Sources */,
 				520DC86525DD783E0033C7E5 /* AddSubView.swift in Sources */,
 				524D411825DD11DB00829193 /* SubscriptionsApp.swift in Sources */,
@@ -528,7 +542,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7ERLK54RKG;
+				DEVELOPMENT_TEAM = D27NXEG753;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -536,7 +550,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = maxime.maheo.Subscriptions;
+				PRODUCT_BUNDLE_IDENTIFIER = maxime.maheo.Subs;
 				PRODUCT_NAME = Subscriptions;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -550,7 +564,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7ERLK54RKG;
+				DEVELOPMENT_TEAM = D27NXEG753;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -558,7 +572,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = maxime.maheo.Subscriptions;
+				PRODUCT_BUNDLE_IDENTIFIER = maxime.maheo.Subs;
 				PRODUCT_NAME = Subscriptions;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -575,7 +589,7 @@
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 7ERLK54RKG;
+				DEVELOPMENT_TEAM = D27NXEG753;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = macOS/Info.plist;
@@ -584,7 +598,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = maxime.maheo.Subscriptions;
+				PRODUCT_BUNDLE_IDENTIFIER = maxime.maheo.Subs;
 				PRODUCT_NAME = Subscriptions;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -599,7 +613,7 @@
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 7ERLK54RKG;
+				DEVELOPMENT_TEAM = D27NXEG753;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = macOS/Info.plist;
@@ -608,7 +622,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = maxime.maheo.Subscriptions;
+				PRODUCT_BUNDLE_IDENTIFIER = maxime.maheo.Subs;
 				PRODUCT_NAME = Subscriptions;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;

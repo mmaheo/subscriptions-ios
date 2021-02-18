@@ -25,19 +25,11 @@ struct SubView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVGrid(columns: columns, spacing: 16) {
-                    ForEach(subStore.subs) { sub in
-                        NavigationLink(destination: SubDetailsView(sub: sub)) {
-                            SubComponent(sub: sub)
-                        }
-                    }
-                }
-                .padding(.horizontal)
-                .padding(.top)
+                makeTotalAmountView()
+                makeSubsGridView()
             }
-            .onAppear {
-                subStore.dispatch(action: .fetchSubs)
-            }
+            .padding(.horizontal)
+            .onAppear { subStore.dispatch(action: .fetchSubs) }
             .alert(item: $subStore.error) { error in
                 Alert(title: Text(error.title),
                       message: Text(error.message),
@@ -45,17 +37,47 @@ struct SubView: View {
             }
             .navigationTitle("Subscriptions")
             .toolbar {
-                Button(action: {
-                    isShowingAddSubView.toggle()
-                }, label: {
-                    Image(systemName: "plus")
-                })
+                Button(action: { isShowingAddSubView.toggle() },
+                       label: { Image(systemName: "plus") })
             }
             .sheet(isPresented: $isShowingAddSubView) {
                 AddSubView(isPresented: $isShowingAddSubView)
+                    .environmentObject(subStore)
             }
         }
     }
+    
+    // MARK: - Make views methods
+    
+    private func makeTotalAmountView() -> some View {
+        HStack {
+            VStack(alignment: .leading) {
+                subStore.totalAmount.map {
+                    Text($0)
+                        .font(.title)
+                        .fontWeight(.semibold)
+                }
+                Text("Amount of your subscriptions each month.")
+                    .font(.caption)
+                    .italic()
+                    .foregroundColor(Color.gray)
+            }
+            
+            Spacer()
+        }
+        .padding(.vertical)
+    }
+    
+    private func makeSubsGridView() -> some View {
+        LazyVGrid(columns: columns, spacing: 16) {
+            ForEach(subStore.subs) { sub in
+                NavigationLink(destination: SubDetailsView(sub: sub)) {
+                    SubComponent(sub: sub)
+                }
+            }
+        }
+    }
+    
 }
 
 #if DEBUG

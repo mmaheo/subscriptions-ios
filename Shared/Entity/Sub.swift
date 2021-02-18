@@ -37,9 +37,13 @@ struct Sub: Identifiable {
     }
     
     var priceWithCurrency: String? {
-        BillingManager.shared.convertWithCurrency(price: price)
+        FormatterManager.shared.doubleToString(value: price, isCurrency: true)
     }
-        
+    
+    var monthlyPrice: Double {
+        BillingManager.shared.monthlyPrice(sub: self)
+    }
+    
     // MARK: - Lifecycle
     
     init(name: String, price: Double, recurrence: Recurrence, dueEvery: Date) {

@@ -22,6 +22,12 @@ final class SubStore: ObservableObject {
     @Published private(set) var subs: [Sub]
     @Published var error: AppError?
     
+    var totalAmount: String? {
+        let amount = Double(subs.reduce(0) { $0 + $1.monthlyPrice })
+        
+        return FormatterManager.shared.doubleToString(value: amount, isCurrency: true)
+    }
+    
     @Inject private var subWorker: SubWorker
     
     private let disposeBag = DisposeBag()
@@ -41,6 +47,17 @@ final class SubStore: ObservableObject {
         case let .addSub(name, price, recurrence, dueEvery):
             addSubAction(name: name, price: price, recurrence: recurrence, dueEvery: dueEvery)
         }
+    }
+    
+    // MARK: - Methods
+    
+    func isFormValid(price: String, name: String) -> Bool {
+        guard let price = FormatterManager.shared.stringToDouble(value: price),
+              price > 0,
+              !name.isEmpty
+        else { return false }
+
+        return true
     }
     
     // MARK: - Private Actions
@@ -63,7 +80,7 @@ final class SubStore: ObservableObject {
     }
     
     private func addSubAction(name: String, price: String, recurrence: Sub.Recurrence, dueEvery: Date) {
-        guard let priceInDouble = Double(price) else { return }
+        guard let priceInDouble = FormatterManager.shared.stringToDouble(value: price) else { return }
         
         let subToAdd = Sub(name: name, price: priceInDouble, recurrence: recurrence, dueEvery: dueEvery)
         

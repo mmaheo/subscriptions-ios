@@ -20,15 +20,6 @@ struct AddSubView: View {
     @State private var recurrence = Sub.Recurrence.monthly
     @State private var dueEvery = Date()
     
-    private var isFormValid: Bool {
-        guard let price = Double(price),
-              price > 0,
-              !name.isEmpty
-        else { return false }
-        
-        return true
-    }
-    
     // MARK: - Body
     
     var body: some View {
@@ -39,7 +30,7 @@ struct AddSubView: View {
                 Button("Add new subscription") {
                     addNewSubscriptionAction()
                 }
-                .disabled(!isFormValid)
+                .disabled(!subStore.isFormValid(price: price, name: name))
             }
             .navigationTitle("Add subscription")
             .toolbar {
@@ -53,7 +44,7 @@ struct AddSubView: View {
                     Button("Add") {
                         addNewSubscriptionAction()
                     }
-                    .disabled(!isFormValid)
+                    .disabled(!subStore.isFormValid(price: price, name: name))
                 }
             }
         }
