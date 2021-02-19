@@ -13,6 +13,7 @@ final class AppDependency {
     
     private let billingManager: BillingManager
     private let formatterManager: FormatterManager
+    private let localNotificationManager: LocalNotificationManager
     private let subWorker: SubWorker
     
     // MARK: - Lifecycle
@@ -20,6 +21,7 @@ final class AppDependency {
     init() {
         billingManager = BillingManager()
         formatterManager = FormatterManager()
+        localNotificationManager = LocalNotificationManager()
         subWorker = SubWorker(realmService: RealmService(), billingManager: billingManager)
 
         registerDependencies()
@@ -32,6 +34,7 @@ final class AppDependency {
         
         resolver.register(billingManager)
         resolver.register(formatterManager)
+        resolver.register(localNotificationManager)
         resolver.register(subWorker)
     }
 }

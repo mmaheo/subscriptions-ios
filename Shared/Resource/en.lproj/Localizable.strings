@@ -34,3 +34,5 @@
 "send_at" = "Sent at";
 "days_before" = "Days before";
 "notification_will_be_sent_days_before_at" = "Notification will be sent %d days before at %@";
+"reminder_of_subscription_to_pay" = "Reminder of subscription to pay";
+"payment_for_is_within_days" = "🔔 Payment for %@ is within %d day(s).";

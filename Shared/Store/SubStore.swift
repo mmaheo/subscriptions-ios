@@ -31,6 +31,7 @@ final class SubStore: ObservableObject {
     @Inject private var subWorker: SubWorker
     @Inject private var billingManager: BillingManager
     @Inject private var formatterManager: FormatterManager
+    @Inject private var localNotificationManager: LocalNotificationManager
     
     @Published private(set) var subs: [Sub] {
         didSet {
@@ -44,6 +45,8 @@ final class SubStore: ObservableObject {
     @Published var error: AppError?
     
     private let disposeBag = DisposeBag()
+    
+    private let notificationTitle: String = String(NSLocalizedString("reminder_of_subscription_to_pay", comment: ""))
 
     // MARK: - Lifecycle
     
@@ -138,7 +141,7 @@ final class SubStore: ObservableObject {
                               isNotificationEnabled: Bool,
                               notificationTime: Date,
                               remindDaysBefore: Int) {
-        let subToAdd = Sub(name: name,
+        let sub = Sub(name: name,
                            price: price,
                            recurrence: recurrence,
                            dueEvery: dueEvery,
@@ -147,15 +150,45 @@ final class SubStore: ObservableObject {
                            notificationTime: notificationTime,
                            remindDaysBefore: remindDaysBefore)
         
-        execute(completable: subWorker.create(sub: subToAdd))
+        let completable: Completable
+            
+        if isNotificationEnabled {
+            completable = subWorker
+                .create(sub: sub)
+                .andThen(localNotificationManager.schedule(title: notificationTitle,
+                                                           body: notificationBody(sub: sub),
+                                                           date: Date(),
+                                                           identifier: sub.id))
+        } else {
+            completable = subWorker.create(sub: sub)
+        }
+        
+        execute(completable: completable)
     }
     
     private func deleteAction(sub: Sub) {
+        localNotificationManager.removePendingNotificationRequest(identifier: sub.id)
+        
         execute(completable: subWorker.delete(sub: sub))
     }
     
     private func updateAction(sub: Sub) {
-        execute(completable: subWorker.update(sub: sub))
+        localNotificationManager.removePendingNotificationRequest(identifier: sub.id)
+        
+        let completable: Completable
+            
+        if sub.isNotificationEnabled {
+            completable = subWorker
+                .update(sub: sub)
+                .andThen(localNotificationManager.schedule(title: notificationTitle,
+                                                           body: notificationBody(sub: sub),
+                                                           date: Date(),
+                                                           identifier: sub.id))
+        } else {
+            completable = subWorker.update(sub: sub)
+        }
+        
+        execute(completable: completable)
     }
     
     // MARK: - Private Methods
@@ -186,6 +219,10 @@ final class SubStore: ObservableObject {
                 self.error = AppError(error: error)
             }
             .disposed(by: disposeBag)
+    }
+    
+    private func notificationBody(sub: Sub) -> String {
+        String(format: NSLocalizedString("payment_for_is_within_days", comment: ""), sub.name, billingManager.daysLeftBeforeNextBilling(sub: sub))
     }
     
 }
