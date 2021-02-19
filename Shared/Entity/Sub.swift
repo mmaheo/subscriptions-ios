@@ -13,14 +13,14 @@ final class Sub: Identifiable, ObservableObject {
     enum Recurrence: String, CaseIterable {
         case weekly, monthly, yearly
         
-        var localized: String {
+        var localized: LocalizedStringKey {
             switch self {
             case .weekly:
-                return "Weekly"
+                return "weekly"
             case .monthly:
-                return "Monthly"
+                return "monthly"
             case .yearly:
-                return "Yearly"
+                return "yearly"
             }
         }
     }
@@ -28,14 +28,14 @@ final class Sub: Identifiable, ObservableObject {
     enum Transaction: String, CaseIterable {
         case credit, debit, saving
         
-        var localized: String {
+        var localized: LocalizedStringKey {
             switch self {
             case .credit:
-                return "Credit"
+                return "credit"
             case .debit:
-                return "Debit"
+                return "debit"
             case .saving:
-                return "Saving"
+                return "saving"
             }
         }
     }

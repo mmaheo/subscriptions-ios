@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Injectable
+import Foundation
 
 struct SubComponent: View {
     
@@ -29,32 +30,9 @@ struct SubComponent: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-                
-                Text("\(daysLeftBeforeNextBilling) \(daysLeftBeforeNextBilling > 1 ? "days" : "day") left")
-                    .font(.caption)
-            }
+            makeDaysLeftView()
             
-            HStack {
-                VStack(alignment: .leading) {
-                    Spacer()
-                    
-                    Text(sub.name)
-                        .font(.subheadline)
-                        .lineLimit(1)
-                    
-                    price.map {
-                        Text($0)
-                            .font(.title)
-                            .bold()
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5)
-                    }
-                }
-                
-                Spacer()
-            }
+            makePriceView()
         }
         .frame(height: 80)
         .foregroundColor(.white)
@@ -63,6 +41,47 @@ struct SubComponent: View {
                                    startPoint: .topLeading,
                                    endPoint: .bottomTrailing))
         .cornerRadius(8)
+    }
+    
+    // MARK: - Private make views methods
+    
+    private func makeDaysLeftView() -> some View {
+        let message: String
+        
+        if daysLeftBeforeNextBilling > 1 {
+            message = String(format: NSLocalizedString("days_left", comment: ""), daysLeftBeforeNextBilling)
+        } else {
+            message = String(format: NSLocalizedString("day_left", comment: ""), daysLeftBeforeNextBilling)
+        }
+        
+        return HStack {
+            Spacer()
+            
+            Text(message)
+                .font(.caption)
+        }
+    }
+    
+    private func makePriceView() -> some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Spacer()
+                
+                Text(sub.name)
+                    .font(.subheadline)
+                    .lineLimit(1)
+                
+                price.map {
+                    Text($0)
+                        .font(.title)
+                        .bold()
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
+                }
+            }
+            
+            Spacer()
+        }
     }
 }
 

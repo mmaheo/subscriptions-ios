@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  Subscriptions
+
+  Created by Maxime Maheo on 19/02/2021.
+  
+*/
+"error_dimiss_action_title" = "Compris !";
+"weekly" = "Hebdomadaire";
+"monthly" = "Mensuel";
+"yearly" = "Annuel";
+"credit" = "Crédit";
+"debit" = "Débit";
+"saving" = "Épargne";
+"days_left" = "%d jours";
+"day_left" = "%d jour";
+"subscriptions" = "Abonnements";
+"amount_of_your_subscriptions_each_months" = "Montant de vos abonnements chaque mois";
+"delete" = "Supprimer";
+"add_subscription" = "Ajouter un abonnement";
+"no_subscription_yet_add_a_new_one" = "Pas encore d'abonnement, ajoutez-en un nouveau !";
+"new_subscription" = "Nouvel abonnement";
+"cancel" = "Annuler";
+"add" = "Ajouter";
+"general" = "Général";
+"name" = "Nom";
+"price" = "Prix";
+"recurrence" = "Récurrence";
+"transaction" = "Transaction";
+"next_billing" = "Prochaine facturation";
+"update_subscription" = "Mettre à jour l'abonnement";
+"details" = "Détails";

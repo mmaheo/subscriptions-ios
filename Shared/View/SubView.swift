@@ -40,7 +40,7 @@ struct SubView: View {
                       message: Text(error.message),
                       dismissButton: .default(Text(error.dimissActionTitle)))
             }
-            .navigationTitle("Subscriptions")
+            .navigationTitle("subscriptions")
             .toolbar {
                 Button(action: { isShowingAddSubView = true },
                        label: { Image(systemName: "plus") })
@@ -62,7 +62,7 @@ struct SubView: View {
                         .font(.title)
                         .fontWeight(.semibold)
                 }
-                Text("Amount of your subscriptions each month.")
+                Text("amount_of_your_subscriptions_each_months")
                     .font(.caption)
                     .italic()
                     .foregroundColor(Color.gray)
@@ -114,7 +114,7 @@ struct SubView: View {
                             Button(action: {
                                 subStore.dispatch(action: .delete(sub: sub))
                             }, label: {
-                                Label("Delete", systemImage: "trash")
+                                Label("delete", systemImage: "trash")
                             })
                         })
                 }
@@ -127,7 +127,7 @@ struct SubView: View {
     private func makePlaceholderView() -> some View {
         VStack {
             Button(action: { isShowingAddSubView = true },
-                   label: { Text("Add subscription").bold() })
+                   label: { Text("add_subscription").bold() })
                 .padding()
                 .foregroundColor(.white)
                 .background(LinearGradient(gradient: Gradient(colors: Sub.Transaction.debit.gradientColors),
@@ -135,11 +135,10 @@ struct SubView: View {
                                            endPoint: .bottomTrailing))
                 .cornerRadius(8)
             
-            Text("No subscription yet, add a new one!")
+            Text("no_subscription_yet_add_a_new_one")
                 .font(.headline)
                 .fontWeight(.light)
                 .italic()
-//                .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
                 .padding(.top, 8)
         }

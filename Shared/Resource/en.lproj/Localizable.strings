@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  Subscriptions
+
+  Created by Maxime Maheo on 19/02/2021.
+  
+*/
+"error_dimiss_action_title" = "Got it!";
+"weekly" = "Weekly";
+"monthly" = "Monthly";
+"yearly" = "Yearly";
+"credit" = "Credit";
+"debit" = "Debit";
+"saving" = "Saving";
+"days_left" = "%d days left";
+"day_left" = "%d day left";
+"subscriptions" = "Subscriptions";
+"amount_of_your_subscriptions_each_months" = "Amount of your subscriptions each months";
+"delete" = "Delete";
+"add_subscription" = "Add subscription";
+"no_subscription_yet_add_a_new_one" = "No subscription yet, add a new one!";
+"new_subscription" = "New subscription";
+"cancel" = "Cancel";
+"add" = "Add";
+"general" = "General";
+"name" = "Name";
+"price" = "Price";
+"recurrence" = "Recurrence";
+"transaction" = "Transaction";
+"next_billing" = "Next billing";
+"update_subscription" = "Update subscription";
+"details" = "Details";

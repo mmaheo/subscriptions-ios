@@ -47,6 +47,8 @@
 		52706DEA25DE9AD2007438CB /* BillingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52706DE825DE9AD2007438CB /* BillingManager.swift */; };
 		52C3A9DD25E00B9E0038E42C /* SubDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C3A9DC25E00B9E0038E42C /* SubDetailsView.swift */; };
 		52C3A9DE25E00B9E0038E42C /* SubDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C3A9DC25E00B9E0038E42C /* SubDetailsView.swift */; };
+		52CF771525E0552200490BB3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52CF771825E0552200490BB3 /* Localizable.strings */; };
+		52CF771625E0552200490BB3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52CF771825E0552200490BB3 /* Localizable.strings */; };
 		52F34DBD25DFABAC00CE8623 /* Text+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F34DBC25DFABAC00CE8623 /* Text+Gradient.swift */; };
 		52F34DBE25DFABAC00CE8623 /* Text+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F34DBC25DFABAC00CE8623 /* Text+Gradient.swift */; };
 		52F34DC225DFB51D00CE8623 /* Transaction+GradientColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F34DC125DFB51D00CE8623 /* Transaction+GradientColors.swift */; };
@@ -76,6 +78,8 @@
 		524D411625DD11DB00829193 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		52706DE825DE9AD2007438CB /* BillingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingManager.swift; sourceTree = "<group>"; };
 		52C3A9DC25E00B9E0038E42C /* SubDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubDetailsView.swift; sourceTree = "<group>"; };
+		52CF771725E0552200490BB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		52CF771B25E0552500490BB3 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		52F34DBC25DFABAC00CE8623 /* Text+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Gradient.swift"; sourceTree = "<group>"; };
 		52F34DC125DFB51D00CE8623 /* Transaction+GradientColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+GradientColors.swift"; sourceTree = "<group>"; };
 		52FF31D125DECE730024BA2F /* FormatterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterManager.swift; sourceTree = "<group>"; };
@@ -260,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				524D410625DD11DB00829193 /* Assets.xcassets */,
+				52CF771825E0552200490BB3 /* Localizable.strings */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -349,6 +354,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 524D40FE25DD11DA00829193;
 			packageReferences = (
@@ -372,6 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				524D411B25DD11DB00829193 /* Assets.xcassets in Resources */,
+				52CF771525E0552200490BB3 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				524D411C25DD11DB00829193 /* Assets.xcassets in Resources */,
+				52CF771625E0552200490BB3 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +443,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		52CF771825E0552200490BB3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52CF771725E0552200490BB3 /* en */,
+				52CF771B25E0552500490BB3 /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		524D411D25DD11DB00829193 /* Debug */ = {

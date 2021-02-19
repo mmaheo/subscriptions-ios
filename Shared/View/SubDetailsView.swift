@@ -22,12 +22,12 @@ struct SubDetailsView: View {
         Form {
             makeGeneralSectionView()
             
-            Button("Update subscription") {
+            Button("update_subscription") {
                 updateSubscriptionAction()
             }
             .disabled(!subStore.isFormValid(sub: sub))
         }
-        .navigationTitle("Details")
+        .navigationTitle("details")
     }
     
     // MARK: - Methods
@@ -46,21 +46,24 @@ struct SubDetailsView: View {
             set: { sub.price = subStore.convertPriceToDouble(price: $0) }
         )
         
-        return Section(header: Text("General")) {
-            TextField("Name", text: $sub.name)
-            TextField("Price", text: priceProxy)
+        return Section(header: Text("general")) {
+            TextField("name", text: $sub.name)
+            TextField("price", text: priceProxy)
                 .keyboardType(.decimalPad)
-            Picker("Recurrence", selection: $sub.recurrence) {
+            Picker("recurrence", selection: $sub.recurrence) {
                 ForEach(Sub.Recurrence.allCases, id: \.self) {
                     Text($0.localized)
                 }
             }
-            Picker("Transaction", selection: $sub.transactionType) {
+            Picker("transaction", selection: $sub.transactionType) {
                 ForEach(Sub.Transaction.allCases, id: \.self) {
                     Text($0.localized)
                 }
             }
-            DatePicker("Next billing", selection: $sub.dueEvery, in: Date()..., displayedComponents: .date)
+            DatePicker(String(NSLocalizedString("next_billing", comment: "")),
+                       selection: $sub.dueEvery,
+                       in: Date()...,
+                       displayedComponents: .date)
         }
     }
 }

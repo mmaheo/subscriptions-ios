@@ -28,21 +28,21 @@ struct AddSubView: View {
             Form {
                 makeGeneralSectionView()
                 
-                Button("Add new subscription") {
+                Button("add_subscription") {
                     addNewSubscriptionAction()
                 }
                 .disabled(!subStore.isFormValid(price: price, name: name))
             }
-            .navigationTitle("New subscription")
+            .navigationTitle("new_subscription")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
+                    Button("cancel") {
                         cancelAction()
                     }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Add") {
+                    Button("add") {
                         addNewSubscriptionAction()
                     }
                     .disabled(!subStore.isFormValid(price: price, name: name))
@@ -70,20 +70,23 @@ struct AddSubView: View {
     
     private func makeGeneralSectionView() -> some View {
         Section(header: Text("General")) {
-            TextField("Name", text: $name)
-            TextField("Price", text: $price)
+            TextField("name", text: $name)
+            TextField("price", text: $price)
                 .keyboardType(.decimalPad)
-            Picker("Recurrence", selection: $recurrence) {
+            Picker("recurrence", selection: $recurrence) {
                 ForEach(Sub.Recurrence.allCases, id: \.self) {
                     Text($0.localized)
                 }
             }
-            Picker("Transaction", selection: $transaction) {
+            Picker("transaction", selection: $transaction) {
                 ForEach(Sub.Transaction.allCases, id: \.self) {
                     Text($0.localized)
                 }
             }
-            DatePicker("Next billing", selection: $dueEvery, in: Date()..., displayedComponents: .date)
+            DatePicker(String(NSLocalizedString("next_billing", comment: "")),
+                       selection: $dueEvery,
+                       in: Date()...,
+                       displayedComponents: .date)
         }
     }
 }

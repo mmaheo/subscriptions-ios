@@ -12,4 +12,5 @@ extension Logger {
 
     static let realm = Logger(subsystem: subsystem, category: "realm")
     static let userAction = Logger(subsystem: subsystem, category: "userAction")
+    static let popup = Logger(subsystem: subsystem, category: "popup")
 }
