@@ -12,7 +12,11 @@ import OSLog
 
 enum SubStoreAction {
     case fetchSubs
-    case addSub(name: String, price: String, recurrence: Sub.Recurrence, dueEvery: Date)
+    case addSub(name: String,
+                price: String,
+                recurrence: Sub.Recurrence,
+                dueEvery: Date,
+                transaction: Sub.Transaction)
     case delete(sub: Sub)
 }
 
@@ -26,12 +30,13 @@ final class SubStore: ObservableObject {
     
     @Published private(set) var subs: [Sub] {
         didSet {
-            let amount = Double(subs.reduce(0) { $0 + billingManager.monthlyPrice(sub: $1) })
-            
-            totalAmount = formatterManager.doubleToString(value: amount, isCurrency: true)
+            calculateTotalAmounts()
         }
     }
     @Published private(set) var totalAmount: String?
+    @Published private(set) var totalAmountDebit: String?
+    @Published private(set) var totalAmountCredit: String?
+    @Published private(set) var totalAmountSaving: String?
     @Published var error: AppError?
     
     private let disposeBag = DisposeBag()
@@ -40,6 +45,11 @@ final class SubStore: ObservableObject {
     
     init(subs: [Sub] = []) {
         self.subs = subs
+        
+        totalAmount = formatterManager.doubleToString(value: 0, isCurrency: true)
+        totalAmountDebit = formatterManager.doubleToString(value: 0, isCurrency: true)
+        totalAmountCredit = formatterManager.doubleToString(value: 0, isCurrency: true)
+        totalAmountSaving = formatterManager.doubleToString(value: 0, isCurrency: true)
     }
     
     // MARK: - Actions
@@ -48,8 +58,12 @@ final class SubStore: ObservableObject {
         switch action {
         case .fetchSubs:
             fetchSubsAction()
-        case let .addSub(name, price, recurrence, dueEvery):
-            addSubAction(name: name, price: price, recurrence: recurrence, dueEvery: dueEvery)
+        case let .addSub(name, price, recurrence, dueEvery, transaction):
+            addSubAction(name: name,
+                         price: price,
+                         recurrence: recurrence,
+                         dueEvery: dueEvery,
+                         transaction: transaction)
         case let .delete(sub):
             deleteAction(sub: sub)
         }
@@ -87,12 +101,20 @@ final class SubStore: ObservableObject {
             .disposed(by: disposeBag)
     }
     
-    private func addSubAction(name: String, price: String, recurrence: Sub.Recurrence, dueEvery: Date) {
+    private func addSubAction(name: String,
+                              price: String,
+                              recurrence: Sub.Recurrence,
+                              dueEvery: Date,
+                              transaction: Sub.Transaction) {
         Logger.userAction.log("Add subscriptions")
         
         guard let priceInDouble = formatterManager.stringToDouble(value: price) else { return }
         
-        let subToAdd = Sub(name: name, price: priceInDouble, recurrence: recurrence, dueEvery: dueEvery)
+        let subToAdd = Sub(name: name,
+                           price: priceInDouble,
+                           recurrence: recurrence,
+                           dueEvery: dueEvery,
+                           transactionType: transaction)
         
         subWorker
             .create(sub: subToAdd)
@@ -127,6 +149,20 @@ final class SubStore: ObservableObject {
                 self.error = AppError(error: error)
             }
             .disposed(by: disposeBag)
+    }
+    
+    // MARK: - Private Methods
+    
+    private func calculateTotalAmounts() {
+        let totalAmount = billingManager.totalAmount(subs: subs)
+        let totalAmountDebit = billingManager.totalAmount(subs: subs, transaction: .debit)
+        let totalAmountCredit = billingManager.totalAmount(subs: subs, transaction: .credit)
+        let totalAmountSaving = billingManager.totalAmount(subs: subs, transaction: .saving)
+        
+        self.totalAmount = formatterManager.doubleToString(value: totalAmount, isCurrency: true)
+        self.totalAmountDebit = formatterManager.doubleToString(value: totalAmountDebit, isCurrency: true)
+        self.totalAmountCredit = formatterManager.doubleToString(value: totalAmountCredit, isCurrency: true)
+        self.totalAmountSaving = formatterManager.doubleToString(value: totalAmountSaving, isCurrency: true)
     }
     
 }

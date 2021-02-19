@@ -27,15 +27,10 @@ final class BillingManager: Injectable {
         return components.day ?? 0
     }
     
-    func monthlyPrice(sub: Sub) -> Double {
-        switch sub.recurrence {
-        case .weekly:
-            return sub.price * 52 / 12
-        case .monthly:
-            return sub.price
-        case .yearly:
-            return sub.price / 12
-        }
+    func totalAmount(subs: [Sub], transaction: Sub.Transaction? = nil) -> Double {
+        subs
+            .filter { transaction == nil ? true : $0.transactionType == transaction }
+            .reduce(0) { $0 + monthlyPrice(sub: $1) }
     }
     
     // MARK: - Private Methods
@@ -57,6 +52,17 @@ final class BillingManager: Injectable {
             return nextBillingDate(dueEvery: calendar.date(byAdding: .month, value: 1, to: dueEvery), recurrence: recurrence)
         case .yearly:
             return nextBillingDate(dueEvery: calendar.date(byAdding: .year, value: 1, to: dueEvery), recurrence: recurrence)
+        }
+    }
+    
+    private func monthlyPrice(sub: Sub) -> Double {
+        switch sub.recurrence {
+        case .weekly:
+            return sub.price * 52 / 12
+        case .monthly:
+            return sub.price
+        case .yearly:
+            return sub.price / 12
         }
     }
     

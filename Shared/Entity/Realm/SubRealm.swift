@@ -15,9 +15,9 @@ final class SubRealm: Object {
     @objc dynamic var id = ""
     @objc dynamic var name = ""
     @objc dynamic var price: Double = 0
-    @objc dynamic var createdAt = Date()
     @objc dynamic var recurrence = Sub.Recurrence.monthly.rawValue
     @objc dynamic var dueEvery = Date()
+    @objc dynamic var transactionType = Sub.Transaction.debit.rawValue
     
     // MARK: - Lifecycle
     
@@ -29,6 +29,7 @@ final class SubRealm: Object {
         self.price = sub.price
         self.recurrence = sub.recurrence.rawValue
         self.dueEvery = sub.dueEvery
+        self.transactionType = sub.transactionType.rawValue
     }
     
     // MARK: - Methods

@@ -26,6 +26,7 @@ struct SubView: View {
         NavigationView {
             ScrollView {
                 makeTotalAmountView()
+                makeTransactionsView()
                 makeSubsGridView()
             }
             .onAppear { subStore.dispatch(action: .fetchSubs) }
@@ -61,10 +62,42 @@ struct SubView: View {
                     .italic()
                     .foregroundColor(Color.gray)
             }
-            
             Spacer()
         }
-        .padding()
+        .padding(.horizontal)
+        .padding(.top)
+    }
+    
+    private func makeTransactionsView() -> some View {
+        HStack {
+            subStore.totalAmountDebit.map {
+                makeTransactionView(value: $0, transaction: Sub.Transaction.debit)
+            }
+            Spacer()
+            subStore.totalAmountCredit.map {
+                makeTransactionView(value: $0, transaction: Sub.Transaction.credit)
+            }
+            Spacer()
+            subStore.totalAmountSaving.map {
+                makeTransactionView(value: $0, transaction: Sub.Transaction.saving)
+            }
+        }
+        .padding(.horizontal)
+        .padding(.top, 8)
+    }
+    
+    private func makeTransactionView(value: String, transaction: Sub.Transaction) -> some View {
+        VStack(alignment: .leading) {
+            Text(value)
+                .font(.title2)
+                .bold()
+                .gradientForeground(colors: transaction.gradientColors)
+
+            Text(transaction.localized)
+                .font(.subheadline)
+                .italic()
+                .foregroundColor(.gray)
+        }
     }
     
     private func makeSubsGridView() -> some View {
@@ -81,6 +114,7 @@ struct SubView: View {
             }
         }
         .padding(.horizontal)
+        .padding(.top)
     }
     
 }
@@ -89,8 +123,13 @@ struct SubView: View {
 
 struct SubView_Previews: PreviewProvider {
     static var previews: some View {
-        SubView()
-            .environmentObject(subStorePreview)
+        Group {
+            SubView()
+                .preferredColorScheme(.dark)
+            
+            SubView()
+        }
+        .environmentObject(subStorePreview)
     }
 }
 

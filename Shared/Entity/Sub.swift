@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Sub: Identifiable {
 
@@ -24,6 +25,32 @@ struct Sub: Identifiable {
         }
     }
     
+    enum Transaction: String, CaseIterable {
+        case credit, debit, saving
+        
+        var localized: String {
+            switch self {
+            case .credit:
+                return "Credit"
+            case .debit:
+                return "Debit"
+            case .saving:
+                return "Saving"
+            }
+        }
+        
+        var gradientColors: [Color] {
+            switch self {
+            case .credit:
+                return [.red, .orange]
+            case .debit:
+                return [.green, .blue]
+            case .saving:
+                return [.purple, .blue]
+            }
+        }
+    }
+    
     // MARK: - Properties
     
     let id: String
@@ -31,15 +58,21 @@ struct Sub: Identifiable {
     let price: Double
     let recurrence: Recurrence
     let dueEvery: Date
+    let transactionType: Transaction
     
     // MARK: - Lifecycle
     
-    init(name: String, price: Double, recurrence: Recurrence, dueEvery: Date) {
+    init(name: String,
+         price: Double,
+         recurrence: Recurrence,
+         dueEvery: Date,
+         transactionType: Transaction) {
         self.id = UUID().uuidString
         self.name = name
         self.price = price
         self.recurrence = recurrence
         self.dueEvery = dueEvery
+        self.transactionType = transactionType
     }
     
     init?(subRealm: SubRealm) {
@@ -51,6 +84,9 @@ struct Sub: Identifiable {
         self.recurrence = recurrence
         
         self.dueEvery = subRealm.dueEvery
+        
+        guard let transactionType = Transaction(rawValue: subRealm.transactionType) else { return nil }
+        self.transactionType = transactionType
     }
     
 }
@@ -61,8 +97,21 @@ extension Sub {
     static let one = list[0]
     
     static let list = [
-        Sub(name: "iCloud", price: 0.99, recurrence: .monthly, dueEvery: Date()),
-        Sub(name: "Apple Music", price: 9.99, recurrence: .monthly, dueEvery: Date())
+        Sub(name: "Saving",
+            price: 100,
+            recurrence: .monthly,
+            dueEvery: Date(),
+            transactionType: .saving),
+        Sub(name: "Apple Music",
+            price: 9.99,
+            recurrence: .monthly,
+            dueEvery: Date(),
+            transactionType: .debit),
+        Sub(name: "Gift",
+            price: 15.99,
+            recurrence: .monthly,
+            dueEvery: Date(),
+            transactionType: .credit)
     ]
 }
 

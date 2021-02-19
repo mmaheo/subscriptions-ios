@@ -19,6 +19,7 @@ struct AddSubView: View {
     @State private var price: String = ""
     @State private var recurrence = Sub.Recurrence.monthly
     @State private var dueEvery = Date()
+    @State private var transaction = Sub.Transaction.debit
     
     // MARK: - Body
     
@@ -53,7 +54,11 @@ struct AddSubView: View {
     // MARK: - Actions
     
     private func addNewSubscriptionAction() {
-        subStore.dispatch(action: .addSub(name: name, price: price, recurrence: recurrence, dueEvery: dueEvery))
+        subStore.dispatch(action: .addSub(name: name,
+                                          price: price,
+                                          recurrence: recurrence,
+                                          dueEvery: dueEvery,
+                                          transaction: transaction))
         cancelAction()
     }
     
@@ -68,8 +73,13 @@ struct AddSubView: View {
             TextField("Name", text: $name)
             TextField("Price", text: $price)
                 .keyboardType(.decimalPad)
-            Picker("Reccurence", selection: $recurrence) {
+            Picker("Recurrence", selection: $recurrence) {
                 ForEach(Sub.Recurrence.allCases, id: \.self) {
+                    Text($0.localized)
+                }
+            }
+            Picker("Transaction", selection: $transaction) {
+                ForEach(Sub.Transaction.allCases, id: \.self) {
                     Text($0.localized)
                 }
             }
