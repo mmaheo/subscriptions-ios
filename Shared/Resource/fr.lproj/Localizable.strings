@@ -30,3 +30,7 @@
 "next_billing" = "Prochaine facturation";
 "update_subscription" = "Mettre à jour l'abonnement";
 "details" = "Détails";
+"notification" = "Notification";
+"sent_at" = "Envoyer à";
+"days_before" = "Jours avant";
+"notification_will_be_sent_days_before_at" = "La notification sera envoyée %d jour(s) avant à %@";

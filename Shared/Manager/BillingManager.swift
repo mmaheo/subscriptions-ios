@@ -29,7 +29,7 @@ final class BillingManager: Injectable {
     
     func totalAmount(subs: [Sub], transaction: Sub.Transaction) -> Double {
         subs
-            .filter { $0.transactionType == transaction }
+            .filter { $0.transaction == transaction }
             .reduce(0) { $0 + monthlyPrice(sub: $1) }
     }
     

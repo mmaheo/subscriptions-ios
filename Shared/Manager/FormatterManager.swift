@@ -13,11 +13,13 @@ final class FormatterManager: Injectable {
     // MARK: - Properties
     
     private let numberFormatter = NumberFormatter()
+    private let dateFormatter = DateFormatter()
     
     // MARK: - Lifecycle
     
     init() {
-        numberFormatter.minimumSignificantDigits = 0
+        numberFormatter.minimumFractionDigits = 0
+        numberFormatter.maximumFractionDigits = 2
     }
     
     // MARK: - Methods
@@ -32,5 +34,12 @@ final class FormatterManager: Injectable {
         numberFormatter.numberStyle = .decimal
         
         return numberFormatter.number(from: value)?.doubleValue
+    }
+    
+    func dateToString(date: Date) -> String? {
+        dateFormatter.dateStyle = .none
+        dateFormatter.timeStyle = .short
+        
+        return dateFormatter.string(from: date)
     }
 }

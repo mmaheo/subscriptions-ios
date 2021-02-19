@@ -30,3 +30,7 @@
 "next_billing" = "Next billing";
 "update_subscription" = "Update subscription";
 "details" = "Details";
+"notification" = "Notification";
+"send_at" = "Sent at";
+"days_before" = "Days before";
+"notification_will_be_sent_days_before_at" = "Notification will be sent %d days before at %@";

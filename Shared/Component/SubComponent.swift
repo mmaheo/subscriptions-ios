@@ -37,7 +37,7 @@ struct SubComponent: View {
         .frame(height: 80)
         .foregroundColor(.white)
         .padding()
-        .background(LinearGradient(gradient: Gradient(colors: sub.transactionType.gradientColors),
+        .background(LinearGradient(gradient: Gradient(colors: sub.transaction.gradientColors),
                                    startPoint: .topLeading,
                                    endPoint: .bottomTrailing))
         .cornerRadius(8)

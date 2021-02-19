@@ -19,14 +19,16 @@ struct SubDetailsView: View {
     // MARK: - Body
     
     var body: some View {
-        Form {
-            makeGeneralSectionView()
-            
-            Button("update_subscription") {
-                updateSubscriptionAction()
-            }
-            .disabled(!subStore.isFormValid(sub: sub))
-        }
+        AddOrUpdateSubFormComponent(type: .update,
+                                    validateAction: { updateSubscriptionAction() },
+                                    name: $sub.name,
+                                    price: $sub.price,
+                                    recurrence: $sub.recurrence,
+                                    transaction: $sub.transaction,
+                                    dueEvery: $sub.dueEvery,
+                                    isNotificationEnabled: $sub.isNotificationEnabled,
+                                    notificationTime: $sub.notificationTime,
+                                    remindDaysBefore: $sub.remindDaysBefore)
         .navigationTitle("details")
     }
     
@@ -36,35 +38,6 @@ struct SubDetailsView: View {
         subStore.dispatch(action: .update(sub: sub))
         
         presentationMode.wrappedValue.dismiss()
-    }
-    
-    // MARK: - Make views methods
-    
-    private func makeGeneralSectionView() -> some View {
-        let priceProxy = Binding(
-            get: { subStore.convertPriceToString(price: sub.price) },
-            set: { sub.price = subStore.convertPriceToDouble(price: $0) }
-        )
-        
-        return Section(header: Text("general")) {
-            TextField("name", text: $sub.name)
-            TextField("price", text: priceProxy)
-                .keyboardType(.decimalPad)
-            Picker("recurrence", selection: $sub.recurrence) {
-                ForEach(Sub.Recurrence.allCases, id: \.self) {
-                    Text($0.localized)
-                }
-            }
-            Picker("transaction", selection: $sub.transactionType) {
-                ForEach(Sub.Transaction.allCases, id: \.self) {
-                    Text($0.localized)
-                }
-            }
-            DatePicker(String(NSLocalizedString("next_billing", comment: "")),
-                       selection: $sub.dueEvery,
-                       in: Date()...,
-                       displayedComponents: .date)
-        }
     }
 }
 

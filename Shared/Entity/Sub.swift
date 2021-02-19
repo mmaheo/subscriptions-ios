@@ -47,7 +47,10 @@ final class Sub: Identifiable, ObservableObject {
     @Published var price: Double
     @Published var recurrence: Recurrence
     @Published var dueEvery: Date
-    @Published var transactionType: Transaction
+    @Published var transaction: Transaction
+    @Published var isNotificationEnabled: Bool
+    @Published var notificationTime: Date
+    @Published var remindDaysBefore: Int
     
     // MARK: - Lifecycle
     
@@ -55,13 +58,19 @@ final class Sub: Identifiable, ObservableObject {
          price: Double,
          recurrence: Recurrence,
          dueEvery: Date,
-         transactionType: Transaction) {
+         transaction: Transaction,
+         isNotificationEnabled: Bool = true,
+         notificationTime: Date = Date(),
+         remindDaysBefore: Int = 1) {
         self.id = UUID().uuidString
         self.name = name
         self.price = price
         self.recurrence = recurrence
         self.dueEvery = dueEvery
-        self.transactionType = transactionType
+        self.transaction = transaction
+        self.isNotificationEnabled = isNotificationEnabled
+        self.notificationTime = notificationTime
+        self.remindDaysBefore = remindDaysBefore
     }
     
     init?(subRealm: SubRealm) {
@@ -74,8 +83,12 @@ final class Sub: Identifiable, ObservableObject {
         
         self.dueEvery = subRealm.dueEvery
         
-        guard let transactionType = Transaction(rawValue: subRealm.transactionType) else { return nil }
-        self.transactionType = transactionType
+        guard let transaction = Transaction(rawValue: subRealm.transaction) else { return nil }
+        self.transaction = transaction
+        
+        self.isNotificationEnabled = subRealm.isNotificationEnabled
+        self.notificationTime = subRealm.notificationTime
+        self.remindDaysBefore = subRealm.remindDaysBefore
     }
     
 }
@@ -90,17 +103,18 @@ extension Sub {
             price: 100,
             recurrence: .monthly,
             dueEvery: Date().addingTimeInterval(60 * 60 * 24 * -1),
-            transactionType: .saving),
+            transaction: .saving,
+            isNotificationEnabled: false),
         Sub(name: "Apple Music",
             price: 15.99,
             recurrence: .monthly,
             dueEvery: Date().addingTimeInterval(60 * 60 * 24 * 1),
-            transactionType: .debit),
+            transaction: .debit),
         Sub(name: "Refund",
             price: 4.99,
             recurrence: .monthly,
             dueEvery: Date().addingTimeInterval(60 * 60 * 24 * 40),
-            transactionType: .credit)
+            transaction: .credit)
     ]
 }
 

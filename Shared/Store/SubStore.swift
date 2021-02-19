@@ -13,10 +13,13 @@ import OSLog
 enum SubStoreAction {
     case fetchSubs
     case addSub(name: String,
-                price: String,
+                price: Double,
                 recurrence: Sub.Recurrence,
                 dueEvery: Date,
-                transaction: Sub.Transaction)
+                transaction: Sub.Transaction,
+                isNotificationEnabled: Bool,
+                notificationTime: Date,
+                remindDaysBefore: Int)
     case delete(sub: Sub)
     case update(sub: Sub)
 }
@@ -61,14 +64,24 @@ final class SubStore: ObservableObject {
             Logger.userAction.log("Fetch subscriptions")
             
             fetchSubsAction()
-        case let .addSub(name, price, recurrence, dueEvery, transaction):
+        case let .addSub(name,
+                         price,
+                         recurrence,
+                         dueEvery,
+                         transaction,
+                         isNotificationEnabled,
+                         notificationTime,
+                         remindDaysBefore):
             Logger.userAction.log("Add subscription")
             
             addSubAction(name: name,
                          price: price,
                          recurrence: recurrence,
                          dueEvery: dueEvery,
-                         transaction: transaction)
+                         transaction: transaction,
+                         isNotificationEnabled: isNotificationEnabled,
+                         notificationTime: notificationTime,
+                         remindDaysBefore: remindDaysBefore)
         case let .delete(sub):
             Logger.userAction.log("Delete subscription")
             
@@ -82,22 +95,14 @@ final class SubStore: ObservableObject {
     
     // MARK: - Methods
     
-    func isFormValid(price: String, name: String) -> Bool {
-        guard let price = formatterManager.stringToDouble(value: price),
-              price > 0,
+    func isFormValid(price: Double, name: String) -> Bool {
+        guard price > 0,
               !name.isEmpty
         else { return false }
 
         return true
     }
     
-    func isFormValid(sub: Sub) -> Bool {
-        guard sub.price > 0,
-              !sub.name.isEmpty
-        else { return false }
-
-        return true
-    }
     func convertPriceToDouble(price: String) -> Double {
         formatterManager.stringToDouble(value: price) ?? 0
     }
@@ -126,17 +131,21 @@ final class SubStore: ObservableObject {
     }
     
     private func addSubAction(name: String,
-                              price: String,
+                              price: Double,
                               recurrence: Sub.Recurrence,
                               dueEvery: Date,
-                              transaction: Sub.Transaction) {
-        guard let priceInDouble = formatterManager.stringToDouble(value: price) else { return }
-        
+                              transaction: Sub.Transaction,
+                              isNotificationEnabled: Bool,
+                              notificationTime: Date,
+                              remindDaysBefore: Int) {
         let subToAdd = Sub(name: name,
-                           price: priceInDouble,
+                           price: price,
                            recurrence: recurrence,
                            dueEvery: dueEvery,
-                           transactionType: transaction)
+                           transaction: transaction,
+                           isNotificationEnabled: isNotificationEnabled,
+                           notificationTime: notificationTime,
+                           remindDaysBefore: remindDaysBefore)
         
         execute(completable: subWorker.create(sub: subToAdd))
     }

@@ -17,7 +17,10 @@ final class SubRealm: Object {
     @objc dynamic var price: Double = 0
     @objc dynamic var recurrence = Sub.Recurrence.monthly.rawValue
     @objc dynamic var dueEvery = Date()
-    @objc dynamic var transactionType = Sub.Transaction.debit.rawValue
+    @objc dynamic var transaction = Sub.Transaction.debit.rawValue
+    @objc dynamic var isNotificationEnabled: Bool = true
+    @objc dynamic var notificationTime: Date = Date()
+    @objc dynamic var remindDaysBefore: Int = 1
     
     // MARK: - Lifecycle
     
@@ -29,7 +32,10 @@ final class SubRealm: Object {
         self.price = sub.price
         self.recurrence = sub.recurrence.rawValue
         self.dueEvery = sub.dueEvery
-        self.transactionType = sub.transactionType.rawValue
+        self.transaction = sub.transaction.rawValue
+        self.isNotificationEnabled = sub.isNotificationEnabled
+        self.notificationTime = sub.notificationTime
+        self.remindDaysBefore = sub.remindDaysBefore
     }
     
     // MARK: - Methods

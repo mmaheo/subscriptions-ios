@@ -49,6 +49,8 @@
 		52C3A9DE25E00B9E0038E42C /* SubDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C3A9DC25E00B9E0038E42C /* SubDetailsView.swift */; };
 		52CF771525E0552200490BB3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52CF771825E0552200490BB3 /* Localizable.strings */; };
 		52CF771625E0552200490BB3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52CF771825E0552200490BB3 /* Localizable.strings */; };
+		52CF771F25E05E5600490BB3 /* AddOrUpdateSubFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CF771E25E05E5600490BB3 /* AddOrUpdateSubFormComponent.swift */; };
+		52CF772025E05E5600490BB3 /* AddOrUpdateSubFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CF771E25E05E5600490BB3 /* AddOrUpdateSubFormComponent.swift */; };
 		52F34DBD25DFABAC00CE8623 /* Text+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F34DBC25DFABAC00CE8623 /* Text+Gradient.swift */; };
 		52F34DBE25DFABAC00CE8623 /* Text+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F34DBC25DFABAC00CE8623 /* Text+Gradient.swift */; };
 		52F34DC225DFB51D00CE8623 /* Transaction+GradientColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F34DC125DFB51D00CE8623 /* Transaction+GradientColors.swift */; };
@@ -80,6 +82,7 @@
 		52C3A9DC25E00B9E0038E42C /* SubDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubDetailsView.swift; sourceTree = "<group>"; };
 		52CF771725E0552200490BB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		52CF771B25E0552500490BB3 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		52CF771E25E05E5600490BB3 /* AddOrUpdateSubFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrUpdateSubFormComponent.swift; sourceTree = "<group>"; };
 		52F34DBC25DFABAC00CE8623 /* Text+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Gradient.swift"; sourceTree = "<group>"; };
 		52F34DC125DFB51D00CE8623 /* Transaction+GradientColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+GradientColors.swift"; sourceTree = "<group>"; };
 		52FF31D125DECE730024BA2F /* FormatterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterManager.swift; sourceTree = "<group>"; };
@@ -183,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				52493D1D25DD87E90042C685 /* SubComponent.swift */,
+				52CF771E25E05E5600490BB3 /* AddOrUpdateSubFormComponent.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -414,6 +418,7 @@
 				524D411725DD11DB00829193 /* SubscriptionsApp.swift in Sources */,
 				520DC81425DD51620033C7E5 /* Sub.swift in Sources */,
 				52493D1E25DD87E90042C685 /* SubComponent.swift in Sources */,
+				52CF771F25E05E5600490BB3 /* AddOrUpdateSubFormComponent.swift in Sources */,
 				520DC80825DD50A00033C7E5 /* SubStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -438,6 +443,7 @@
 				520DC84625DD59CC0033C7E5 /* SubWorker.swift in Sources */,
 				520DC80925DD50A00033C7E5 /* SubStore.swift in Sources */,
 				52493D1F25DD87E90042C685 /* SubComponent.swift in Sources */,
+				52CF772025E05E5600490BB3 /* AddOrUpdateSubFormComponent.swift in Sources */,
 				520DC85A25DD64710033C7E5 /* Logger+App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

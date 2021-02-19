@@ -52,7 +52,7 @@ struct SubView: View {
         }
     }
     
-    // MARK: - Make views methods
+    // MARK: - Make views
     
     private func makeTotalAmountView() -> some View {
         HStack {
