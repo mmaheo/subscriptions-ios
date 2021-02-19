@@ -14,11 +14,17 @@ final class FormatterManager: Injectable {
     
     private let numberFormatter = NumberFormatter()
     
+    // MARK: - Lifecycle
+    
+    init() {
+        numberFormatter.minimumSignificantDigits = 0
+    }
+    
     // MARK: - Methods
     
     func doubleToString(value: Double, isCurrency: Bool) -> String? {
         numberFormatter.numberStyle = isCurrency ? .currency : .decimal
-        
+
         return numberFormatter.string(from: value as NSNumber)
     }
     

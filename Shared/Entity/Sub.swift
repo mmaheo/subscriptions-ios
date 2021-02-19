@@ -38,17 +38,6 @@ struct Sub: Identifiable {
                 return "Saving"
             }
         }
-        
-        var gradientColors: [Color] {
-            switch self {
-            case .credit:
-                return [.red, .orange]
-            case .debit:
-                return [.green, .blue]
-            case .saving:
-                return [.purple, .blue]
-            }
-        }
     }
     
     // MARK: - Properties
