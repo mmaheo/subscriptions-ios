@@ -27,7 +27,7 @@ struct SubDetailsView: View {
             }
             .disabled(!subStore.isFormValid(sub: sub))
         }
-        .navigationTitle("Subscription details")
+        .navigationTitle("Details")
     }
     
     // MARK: - Methods

@@ -33,7 +33,7 @@ struct AddSubView: View {
                 }
                 .disabled(!subStore.isFormValid(price: price, name: name))
             }
-            .navigationTitle("Add subscription")
+            .navigationTitle("New subscription")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") {
