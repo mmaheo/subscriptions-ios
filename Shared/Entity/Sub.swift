@@ -86,20 +86,20 @@ extension Sub {
     static let one = list[0]
     
     static let list = [
-        Sub(name: "Saving",
+        Sub(name: "Saving money",
             price: 100,
             recurrence: .monthly,
             dueEvery: Date(),
             transactionType: .saving),
         Sub(name: "Apple Music",
-            price: 9.99,
-            recurrence: .monthly,
-            dueEvery: Date(),
-            transactionType: .debit),
-        Sub(name: "Gift",
             price: 15.99,
             recurrence: .monthly,
-            dueEvery: Date(),
+            dueEvery: Date().addingTimeInterval(60*60*24*1),
+            transactionType: .debit),
+        Sub(name: "Refund",
+            price: 4.99,
+            recurrence: .monthly,
+            dueEvery: Date().addingTimeInterval(60*60*24*40),
             transactionType: .credit)
     ]
 }

@@ -51,7 +51,33 @@ final class RealmService {
         }
     }
     
-    func read<Element: Object>(ofType type: Element.Type, sortedByKeyPath keyPath: String? = nil, ascending: Bool = true) -> Single<Results<Element>> {
+    func create<Element: Object>(elements: [Element]) -> Completable {
+        Completable.create { [weak self] completable in
+            guard let self = self,
+                  let realm = try? Realm(configuration: self.realmConfig)
+            else { return Disposables.create() }
+            
+            do {
+                try realm.write {
+                    realm.add(elements)
+                }
+                
+                Logger.realm.log("Create objects with success")
+                
+                completable(.completed)
+            } catch {
+                Logger.realm.error("Fail to create objects. \(error.localizedDescription)")
+                
+                completable(.error(error))
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func read<Element: Object>(ofType type: Element.Type,
+                               sortedByKeyPath keyPath: String? = nil,
+                               ascending: Bool = true) -> Single<Results<Element>> {
         Single.create { [weak self] (single) in
             guard let self = self,
                 let realm = try? Realm(configuration: self.realmConfig)
@@ -73,7 +99,8 @@ final class RealmService {
         }
     }
     
-    func delete<Element: Object>(ofType type: Element.Type, forPrimaryKey primaryKey: String) -> Completable {
+    func delete<Element: Object>(ofType type: Element.Type,
+                                 forPrimaryKey primaryKey: String) -> Completable {
         Completable.create { [weak self] completable in
             guard let self = self,
                   let realm = try? Realm(configuration: self.realmConfig)
@@ -91,6 +118,30 @@ final class RealmService {
                 completable(.completed)
             } catch {
                 Logger.realm.error("Failed to delete object")
+                
+                completable(.error(error))
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    func deleteAll() -> Completable {
+        Completable.create { [weak self] completable in
+            guard let self = self,
+                  let realm = try? Realm(configuration: self.realmConfig)
+            else { return Disposables.create() }
+            
+            do {
+                try realm.write {
+                    realm.deleteAll()
+                }
+                
+                Logger.realm.log("Delete all with success")
+                
+                completable(.completed)
+            } catch {
+                Logger.realm.error("Failed to delete all")
                 
                 completable(.error(error))
             }

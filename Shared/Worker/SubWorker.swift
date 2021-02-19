@@ -7,6 +7,7 @@
 
 import RxSwift
 import Injectable
+import OSLog
 
 final class SubWorker: Injectable {
     
@@ -15,11 +16,17 @@ final class SubWorker: Injectable {
     private let realmService: RealmService
     private let billingManager: BillingManager
     
+    private let disposeBag = DisposeBag()
+    
     // MARK: - Lifecycle
     
     init(realmService: RealmService, billingManager: BillingManager) {
         self.realmService = realmService
         self.billingManager = billingManager
+        
+        #if DEBUG
+        populateData()
+        #endif
     }
     
     // MARK: - Methods
@@ -54,6 +61,22 @@ final class SubWorker: Injectable {
         }
         
         return sub1.name.localizedStandardCompare(sub2.name) == .orderedAscending
+    }
+    
+    private func populateData() {
+        let subsRealm = Sub.list.map { SubRealm(sub: $0) }
+        
+        realmService
+            .deleteAll()
+            .andThen(realmService.create(elements: subsRealm))
+            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+            .observe(on: MainScheduler.instance)
+            .subscribe(onCompleted: {
+                Logger.realm.debug("Populate data complete")
+            }, onError: { error in
+                Logger.realm.debug("Populate data error: \(error.localizedDescription)")
+            })
+            .disposed(by: disposeBag)
     }
     
 }
