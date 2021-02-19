@@ -27,7 +27,12 @@ struct SubView: View {
             ScrollView {
                 makeTotalAmountView()
                 makeTransactionsView()
-                makeSubsGridView()
+                
+                if subStore.subs.isEmpty {
+                    makePlaceholderView()
+                } else {
+                    makeSubsGridView()
+                }
             }
             .onAppear { subStore.dispatch(action: .fetchSubs) }
             .alert(item: $subStore.error) { error in
@@ -37,7 +42,7 @@ struct SubView: View {
             }
             .navigationTitle("Subscriptions")
             .toolbar {
-                Button(action: { isShowingAddSubView.toggle() },
+                Button(action: { isShowingAddSubView = true },
                        label: { Image(systemName: "plus") })
             }
             .sheet(isPresented: $isShowingAddSubView) {
@@ -92,7 +97,7 @@ struct SubView: View {
                 .font(.title2)
                 .bold()
                 .gradientForeground(colors: transaction.gradientColors)
-
+            
             Text(transaction.localized)
                 .font(.subheadline)
                 .italic()
@@ -117,6 +122,29 @@ struct SubView: View {
         }
         .padding(.horizontal)
         .padding(.top)
+    }
+    
+    private func makePlaceholderView() -> some View {
+        VStack {
+            Button(action: { isShowingAddSubView = true },
+                   label: { Text("Add subscription").bold() })
+                .padding()
+                .foregroundColor(.white)
+                .background(LinearGradient(gradient: Gradient(colors: Sub.Transaction.debit.gradientColors),
+                                           startPoint: .topLeading,
+                                           endPoint: .bottomTrailing))
+                .cornerRadius(8)
+            
+            Text("No subscription yet, add a new one!")
+                .font(.headline)
+                .fontWeight(.light)
+                .italic()
+//                .foregroundColor(.gray)
+                .multilineTextAlignment(.center)
+                .padding(.top, 8)
+        }
+        .padding(.horizontal)
+        .padding(.top, 32)
     }
     
 }
