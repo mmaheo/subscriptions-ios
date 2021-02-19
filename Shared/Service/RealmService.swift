@@ -99,6 +99,30 @@ final class RealmService {
         }
     }
     
+    func update<Element: Object>(element: Element) -> Completable {
+        Completable.create { [weak self] completable in
+            guard let self = self,
+                  let realm = try? Realm(configuration: self.realmConfig)
+            else { return Disposables.create() }
+            
+            do {
+                try realm.write {
+                    realm.add(element, update: .modified)
+                }
+                
+                Logger.realm.log("Update object with success")
+                
+                completable(.completed)
+            } catch {
+                Logger.realm.error("Fail to update object. \(error.localizedDescription)")
+                
+                completable(.error(error))
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
     func delete<Element: Object>(ofType type: Element.Type,
                                  forPrimaryKey primaryKey: String) -> Completable {
         Completable.create { [weak self] completable in

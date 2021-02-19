@@ -103,14 +103,16 @@ struct SubView: View {
     private func makeSubsGridView() -> some View {
         LazyVGrid(columns: columns, spacing: 16) {
             ForEach(subStore.subs) { sub in
-                SubComponent(sub: sub)
-                    .contextMenu(menuItems: {
-                        Button(action: {
-                            subStore.dispatch(action: .delete(sub: sub))
-                        }, label: {
-                            Label("Delete", systemImage: "trash")
+                NavigationLink(destination: SubDetailsView(sub: sub)) {
+                    SubComponent(sub: sub)
+                        .contextMenu(menuItems: {
+                            Button(action: {
+                                subStore.dispatch(action: .delete(sub: sub))
+                            }, label: {
+                                Label("Delete", systemImage: "trash")
+                            })
                         })
-                    })
+                }
             }
         }
         .padding(.horizontal)

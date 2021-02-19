@@ -45,6 +45,8 @@
 		524D411C25DD11DB00829193 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 524D410625DD11DB00829193 /* Assets.xcassets */; };
 		52706DE925DE9AD2007438CB /* BillingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52706DE825DE9AD2007438CB /* BillingManager.swift */; };
 		52706DEA25DE9AD2007438CB /* BillingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52706DE825DE9AD2007438CB /* BillingManager.swift */; };
+		52C3A9DD25E00B9E0038E42C /* SubDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C3A9DC25E00B9E0038E42C /* SubDetailsView.swift */; };
+		52C3A9DE25E00B9E0038E42C /* SubDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C3A9DC25E00B9E0038E42C /* SubDetailsView.swift */; };
 		52F34DBD25DFABAC00CE8623 /* Text+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F34DBC25DFABAC00CE8623 /* Text+Gradient.swift */; };
 		52F34DBE25DFABAC00CE8623 /* Text+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F34DBC25DFABAC00CE8623 /* Text+Gradient.swift */; };
 		52F34DC225DFB51D00CE8623 /* Transaction+GradientColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F34DC125DFB51D00CE8623 /* Transaction+GradientColors.swift */; };
@@ -73,6 +75,7 @@
 		524D411525DD11DB00829193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		524D411625DD11DB00829193 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		52706DE825DE9AD2007438CB /* BillingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillingManager.swift; sourceTree = "<group>"; };
+		52C3A9DC25E00B9E0038E42C /* SubDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubDetailsView.swift; sourceTree = "<group>"; };
 		52F34DBC25DFABAC00CE8623 /* Text+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Gradient.swift"; sourceTree = "<group>"; };
 		52F34DC125DFB51D00CE8623 /* Transaction+GradientColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+GradientColors.swift"; sourceTree = "<group>"; };
 		52FF31D125DECE730024BA2F /* FormatterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterManager.swift; sourceTree = "<group>"; };
@@ -266,6 +269,7 @@
 			children = (
 				524D410525DD11DA00829193 /* SubView.swift */,
 				520DC86325DD783E0033C7E5 /* AddSubView.swift */,
+				52C3A9DC25E00B9E0038E42C /* SubDetailsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -393,6 +397,7 @@
 				520DC85F25DD703A0033C7E5 /* AppError.swift in Sources */,
 				520DC82725DD53A40033C7E5 /* AppDependency.swift in Sources */,
 				52706DE925DE9AD2007438CB /* BillingManager.swift in Sources */,
+				52C3A9DD25E00B9E0038E42C /* SubDetailsView.swift in Sources */,
 				520DC84525DD59CC0033C7E5 /* SubWorker.swift in Sources */,
 				52F34DC225DFB51D00CE8623 /* Transaction+GradientColors.swift in Sources */,
 				52F34DBD25DFABAC00CE8623 /* Text+Gradient.swift in Sources */,
@@ -416,6 +421,7 @@
 				520DC86525DD783E0033C7E5 /* AddSubView.swift in Sources */,
 				524D411825DD11DB00829193 /* SubscriptionsApp.swift in Sources */,
 				52706DEA25DE9AD2007438CB /* BillingManager.swift in Sources */,
+				52C3A9DE25E00B9E0038E42C /* SubDetailsView.swift in Sources */,
 				520DC87525DD78E90033C7E5 /* Sub.swift in Sources */,
 				52F34DC325DFB51E00CE8623 /* Transaction+GradientColors.swift in Sources */,
 				52F34DBE25DFABAC00CE8623 /* Text+Gradient.swift in Sources */,

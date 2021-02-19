@@ -18,6 +18,7 @@ enum SubStoreAction {
                 dueEvery: Date,
                 transaction: Sub.Transaction)
     case delete(sub: Sub)
+    case update(sub: Sub)
 }
 
 final class SubStore: ObservableObject {
@@ -61,7 +62,7 @@ final class SubStore: ObservableObject {
             
             fetchSubsAction()
         case let .addSub(name, price, recurrence, dueEvery, transaction):
-            Logger.userAction.log("Add subscriptions")
+            Logger.userAction.log("Add subscription")
             
             addSubAction(name: name,
                          price: price,
@@ -69,9 +70,13 @@ final class SubStore: ObservableObject {
                          dueEvery: dueEvery,
                          transaction: transaction)
         case let .delete(sub):
-            Logger.userAction.log("Delete subscriptions")
+            Logger.userAction.log("Delete subscription")
             
             deleteAction(sub: sub)
+        case let .update(sub):
+            Logger.userAction.log("Update subscription")
+            
+            updateAction(sub: sub)
         }
     }
     
@@ -84,6 +89,21 @@ final class SubStore: ObservableObject {
         else { return false }
 
         return true
+    }
+    
+    func isFormValid(sub: Sub) -> Bool {
+        guard sub.price > 0,
+              !sub.name.isEmpty
+        else { return false }
+
+        return true
+    }
+    func convertPriceToDouble(price: String) -> Double {
+        formatterManager.stringToDouble(value: price) ?? 0
+    }
+    
+    func convertPriceToString(price: Double) -> String {
+        formatterManager.doubleToString(value: price, isCurrency: false) ?? ""
     }
     
     // MARK: - Private Actions
@@ -118,37 +138,15 @@ final class SubStore: ObservableObject {
                            dueEvery: dueEvery,
                            transactionType: transaction)
         
-        subWorker
-            .create(sub: subToAdd)
-            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInteractive))
-            .observe(on: MainScheduler.instance)
-            .subscribe(onCompleted: { [weak self] in
-                guard let self = self else { return }
-                
-                self.fetchSubsAction()
-            }, onError: { [weak self] error in
-                guard let self = self else { return }
-                
-                self.error = AppError(error: error)
-            })
-            .disposed(by: disposeBag)
+        execute(completable: subWorker.create(sub: subToAdd))
     }
     
     private func deleteAction(sub: Sub) {
-        subWorker
-            .delete(sub: sub)
-            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInteractive))
-            .observe(on: MainScheduler.instance)
-            .subscribe { [weak self] in
-                guard let self = self else { return }
-                
-                self.fetchSubsAction()
-            } onError: {[weak self] error in
-                guard let self = self else { return }
-                
-                self.error = AppError(error: error)
-            }
-            .disposed(by: disposeBag)
+        execute(completable: subWorker.delete(sub: sub))
+    }
+    
+    private func updateAction(sub: Sub) {
+        execute(completable: subWorker.update(sub: sub))
     }
     
     // MARK: - Private Methods
@@ -163,6 +161,22 @@ final class SubStore: ObservableObject {
         self.totalAmountCredit = formatterManager.doubleToString(value: totalAmountCredit, isCurrency: true)
         self.totalAmountSaving = formatterManager.doubleToString(value: totalAmountSaving, isCurrency: true)
         self.totalAmount = formatterManager.doubleToString(value: totalAmount, isCurrency: true)
+    }
+    
+    private func execute(completable: Completable) {
+        completable
+            .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInteractive))
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] in
+                guard let self = self else { return }
+                
+                self.fetchSubsAction()
+            } onError: {[weak self] error in
+                guard let self = self else { return }
+                
+                self.error = AppError(error: error)
+            }
+            .disposed(by: disposeBag)
     }
     
 }

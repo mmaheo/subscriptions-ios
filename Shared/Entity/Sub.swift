@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Sub: Identifiable {
+final class Sub: Identifiable, ObservableObject {
 
     enum Recurrence: String, CaseIterable {
         case weekly, monthly, yearly
@@ -43,11 +43,11 @@ struct Sub: Identifiable {
     // MARK: - Properties
     
     let id: String
-    let name: String
-    let price: Double
-    let recurrence: Recurrence
-    let dueEvery: Date
-    let transactionType: Transaction
+    @Published var name: String
+    @Published var price: Double
+    @Published var recurrence: Recurrence
+    @Published var dueEvery: Date
+    @Published var transactionType: Transaction
     
     // MARK: - Lifecycle
     
@@ -89,17 +89,17 @@ extension Sub {
         Sub(name: "Saving money",
             price: 100,
             recurrence: .monthly,
-            dueEvery: Date(),
+            dueEvery: Date().addingTimeInterval(60 * 60 * 24 * -1),
             transactionType: .saving),
         Sub(name: "Apple Music",
             price: 15.99,
             recurrence: .monthly,
-            dueEvery: Date().addingTimeInterval(60*60*24*1),
+            dueEvery: Date().addingTimeInterval(60 * 60 * 24 * 1),
             transactionType: .debit),
         Sub(name: "Refund",
             price: 4.99,
             recurrence: .monthly,
-            dueEvery: Date().addingTimeInterval(60*60*24*40),
+            dueEvery: Date().addingTimeInterval(60 * 60 * 24 * 40),
             transactionType: .credit)
     ]
 }

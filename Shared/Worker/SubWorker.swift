@@ -50,6 +50,12 @@ final class SubWorker: Injectable {
         realmService.delete(ofType: SubRealm.self, forPrimaryKey: sub.id)
     }
     
+    func update(sub: Sub) -> Completable {
+        let subRealm = SubRealm(sub: sub)
+        
+        return realmService.update(element: subRealm)
+    }
+    
     // MARK: - Private Methods
     
     private func sortByNextBillingAndAToZ(sub1: Sub, sub2: Sub) -> Bool {
