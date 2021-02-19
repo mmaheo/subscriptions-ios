@@ -27,9 +27,9 @@ final class BillingManager: Injectable {
         return components.day ?? 0
     }
     
-    func totalAmount(subs: [Sub], transaction: Sub.Transaction? = nil) -> Double {
+    func totalAmount(subs: [Sub], transaction: Sub.Transaction) -> Double {
         subs
-            .filter { transaction == nil ? true : $0.transactionType == transaction }
+            .filter { $0.transactionType == transaction }
             .reduce(0) { $0 + monthlyPrice(sub: $1) }
     }
     
@@ -65,5 +65,4 @@ final class BillingManager: Injectable {
             return sub.price / 12
         }
     }
-    
 }

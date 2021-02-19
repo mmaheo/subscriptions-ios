@@ -154,15 +154,15 @@ final class SubStore: ObservableObject {
     // MARK: - Private Methods
     
     private func calculateTotalAmounts() {
-        let totalAmount = billingManager.totalAmount(subs: subs)
         let totalAmountDebit = billingManager.totalAmount(subs: subs, transaction: .debit)
         let totalAmountCredit = billingManager.totalAmount(subs: subs, transaction: .credit)
         let totalAmountSaving = billingManager.totalAmount(subs: subs, transaction: .saving)
-        
-        self.totalAmount = formatterManager.doubleToString(value: totalAmount, isCurrency: true)
+        let totalAmount = totalAmountDebit - totalAmountCredit
+
         self.totalAmountDebit = formatterManager.doubleToString(value: totalAmountDebit, isCurrency: true)
         self.totalAmountCredit = formatterManager.doubleToString(value: totalAmountCredit, isCurrency: true)
         self.totalAmountSaving = formatterManager.doubleToString(value: totalAmountSaving, isCurrency: true)
+        self.totalAmount = formatterManager.doubleToString(value: totalAmount, isCurrency: true)
     }
     
 }
